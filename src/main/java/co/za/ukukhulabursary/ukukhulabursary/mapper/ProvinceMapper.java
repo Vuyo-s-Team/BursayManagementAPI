@@ -14,7 +14,7 @@ public class ProvinceMapper implements RowMapper<Province> {
         Province province = new Province();
         if (rowNum > 0) {
             province.setId(rs.getLong("ProvinceID"));
-            province.setName(rs.getString("ProvinceName"));
+            province.setName(rs.getString("Name"));
         }
         return province;
     }
