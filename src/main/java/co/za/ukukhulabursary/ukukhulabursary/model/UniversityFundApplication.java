@@ -9,7 +9,6 @@ public class UniversityFundApplication {
 
     private long id;
     private LocalDate fundingYear;
-    private double amount;
     private Status status;
     private String comment;
 }
