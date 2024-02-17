@@ -24,4 +24,14 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
                 universityYearlyFundAllocationMapper
         );
     }
+
+    @Override
+    public List<UniversityYearlyFundAllocation> findAllUniversitiesFundingByYear(int year) {
+        String sql = "SELECT * FROM [dbo].[vUniversityFundAllocation] WHERE YEAR([FinancialYearStart]) = ?";
+        return jdbcTemplate.query(
+                sql,
+                universityYearlyFundAllocationMapper,
+                year
+        );
+    }
 }

@@ -64,4 +64,9 @@ public class UniversityService implements IUniversityService {
     public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingUpToDate() {
         return universityYearlyFundAllocationRepository.findAllUniversitiesFunding();
     }
+
+    @Override
+    public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingByYear(int year) {
+        return universityYearlyFundAllocationRepository.findAllUniversitiesFundingByYear(year);
+    }
 }

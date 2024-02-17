@@ -86,6 +86,21 @@ public class UniversityController {
         );
     }
 
+    @GetMapping("/funding/{year}")
+    public CollectionModel<EntityModel<UniversityYearlyFundAllocation>> allUniversityFundingByYear(
+            @PathVariable("year") int year) {
+        List<EntityModel<UniversityYearlyFundAllocation>> fundAllocations = universityService
+                .retrieveAllUniversityFundingByYear(year)
+                .stream()
+                .map(universityYearlyFundAllocationAssembler::toModel)
+                .toList();
+        return CollectionModel.of(
+                fundAllocations,
+                linkTo(methodOn(UniversityController.class).allUniversityFundingByYear(year)).withSelfRel(),
+                linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities")
+        );
+    }
+
     @GetMapping("/provinces")
     public CollectionModel<EntityModel<Province>> allProvinces() {
         List<EntityModel<Province>> provinces = universityService.retrieveAllUniversityProvinces()

@@ -25,4 +25,6 @@ public interface IUniversityService {
     public void createUniversityAndApplication(UniversityAndApplicationDTO universityApplication);
 
     public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingUpToDate();
+
+    public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingByYear(int year);
 }
