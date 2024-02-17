@@ -4,9 +4,11 @@ import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.link.ProvinceAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.link.StatusAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.link.UniversityAssembler;
+import co.za.ukukhulabursary.ukukhulabursary.link.UniversityYearlyFundAllocationAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
+import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUniversityService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
@@ -29,6 +31,7 @@ public class UniversityController {
     private final ProvinceAssembler provinceAssembler;
     private final UniversityAssembler universityAssembler;
     private final StatusAssembler statusAssembler;
+    private final UniversityYearlyFundAllocationAssembler universityYearlyFundAllocationAssembler;
 
     @GetMapping
     public CollectionModel<EntityModel<University>> allUniversities() {
@@ -38,7 +41,9 @@ public class UniversityController {
                 .toList();
         return CollectionModel.of(
                 universities,
-                linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities")
+                linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities"),
+                linkTo(methodOn(UniversityController.class).allUniversityFundingUpToDate())
+                        .withRel("university_funding_UpToDate")
         );
     }
 
@@ -64,6 +69,20 @@ public class UniversityController {
         return CollectionModel.of(
                 universities,
                 linkTo(methodOn(UniversityController.class).allUniversityByStatus(statusId)).withSelfRel()
+        );
+    }
+
+    @GetMapping("/funding")
+    public CollectionModel<EntityModel<UniversityYearlyFundAllocation>> allUniversityFundingUpToDate() {
+        List<EntityModel<UniversityYearlyFundAllocation>> fundAllocations = universityService
+                .retrieveAllUniversityFundingUpToDate()
+                .stream()
+                .map(universityYearlyFundAllocationAssembler::toModel)
+                .toList();
+        return CollectionModel.of(
+                fundAllocations,
+                linkTo(methodOn(UniversityController.class).allUniversityFundingUpToDate()).withSelfRel(),
+                linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities")
         );
     }
 

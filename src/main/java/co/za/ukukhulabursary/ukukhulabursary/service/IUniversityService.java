@@ -4,6 +4,7 @@ import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
+import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface IUniversityService {
     public List<Status> retrieveAllStatuses();
 
     public void createUniversityAndApplication(UniversityAndApplicationDTO universityApplication);
+
+    public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingUpToDate();
 }

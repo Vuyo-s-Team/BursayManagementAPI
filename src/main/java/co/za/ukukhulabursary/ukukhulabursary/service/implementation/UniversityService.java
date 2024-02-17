@@ -6,9 +6,8 @@ import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityNotFoundExcepti
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IProvinceRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStatusRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityRepository;
+import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.repository.*;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUniversityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +21,7 @@ public class UniversityService implements IUniversityService {
     private final IProvinceRepository provinceRepository;
     private final IUniversityRepository universityRepository;
     private final IStatusRepository statusRepository;
+    private final IUniversityYearlyFundAllocationRepository universityYearlyFundAllocationRepository;
 
     @Override
     public List<Province> retrieveAllUniversityProvinces() {
@@ -58,5 +58,10 @@ public class UniversityService implements IUniversityService {
     @Override
     public void createUniversityAndApplication(UniversityAndApplicationDTO universityApplication) {
         universityRepository.save(universityApplication);
+    }
+
+    @Override
+    public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingUpToDate() {
+        return universityYearlyFundAllocationRepository.findAllUniversitiesFunding();
     }
 }
