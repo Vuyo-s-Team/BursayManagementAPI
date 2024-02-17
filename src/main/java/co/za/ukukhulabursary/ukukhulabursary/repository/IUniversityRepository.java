@@ -7,4 +7,6 @@ import java.util.List;
 public interface IUniversityRepository {
 
     public List<University> findAll();
+
+    public List<University> findAllByStatusId(long statusId);
 }

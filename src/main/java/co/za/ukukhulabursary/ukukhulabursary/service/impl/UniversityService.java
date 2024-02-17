@@ -2,8 +2,10 @@ package co.za.ukukhulabursary.ukukhulabursary.service.impl;
 
 import co.za.ukukhulabursary.ukukhulabursary.exception.ProvinceNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
+import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IProvinceRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.IStatusRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityRepository;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUniversityService;
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ public class UniversityService implements IUniversityService {
 
     private final IProvinceRepository provinceRepository;
     private final IUniversityRepository universityRepository;
+    private final IStatusRepository statusRepository;
 
     @Override
     public List<Province> retrieveAllUniversityProvinces() {
@@ -32,5 +35,15 @@ public class UniversityService implements IUniversityService {
     @Override
     public List<University> retrieveAllUniversities() {
         return universityRepository.findAll();
+    }
+
+    @Override
+    public List<University> retrieveAllUniversitiesByStatusId(long statusId) {
+        return universityRepository.findAllByStatusId(statusId);
+    }
+
+    @Override
+    public List<Status> retrieveAllStatuses() {
+        return statusRepository.findAll();
     }
 }

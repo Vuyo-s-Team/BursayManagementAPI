@@ -21,4 +21,10 @@ public class UniversityRepository implements IUniversityRepository {
         String sql = "SELECT * FROM [dbo].[University]";
         return jdbcTemplate.query(sql, universityMapper);
     }
+
+    @Override
+    public List<University> findAllByStatusId(long statusId) {
+        String sql = "SELECT * FROM [dbo].[udfGetUniversityByStatus](?)";
+        return jdbcTemplate.query(sql, universityMapper, statusId);
+    }
 }
