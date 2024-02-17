@@ -1,4 +1,4 @@
-package co.za.ukukhulabursary.ukukhulabursary.repository.impl;
+package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.ProvinceMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;

@@ -1,4 +1,4 @@
-package co.za.ukukhulabursary.ukukhulabursary.service.impl;
+package co.za.ukukhulabursary.ukukhulabursary.service.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.exception.ProvinceNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
