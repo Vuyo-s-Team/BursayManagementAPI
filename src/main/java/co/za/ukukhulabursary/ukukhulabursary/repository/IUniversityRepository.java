@@ -1,5 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.repository;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface IUniversityRepository {
     public List<University> findAllByStatusId(long statusId);
 
     public Optional<University> findById(long id);
+
+    public void save(UniversityAndApplicationDTO universityApplication);
 }

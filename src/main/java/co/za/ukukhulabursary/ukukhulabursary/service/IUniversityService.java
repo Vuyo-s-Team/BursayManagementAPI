@@ -1,5 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.service;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
@@ -19,4 +20,6 @@ public interface IUniversityService {
     public List<University> retrieveAllUniversitiesByStatusId(long statusId);
 
     public List<Status> retrieveAllStatuses();
+
+    public void createUniversityAndApplication(UniversityAndApplicationDTO universityApplication);
 }

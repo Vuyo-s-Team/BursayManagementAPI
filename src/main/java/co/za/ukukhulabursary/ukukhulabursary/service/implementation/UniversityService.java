@@ -1,5 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.service.implementation;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.exception.ProvinceNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
@@ -52,5 +53,10 @@ public class UniversityService implements IUniversityService {
     @Override
     public List<Status> retrieveAllStatuses() {
         return statusRepository.findAll();
+    }
+
+    @Override
+    public void createUniversityAndApplication(UniversityAndApplicationDTO universityApplication) {
+        universityRepository.save(universityApplication);
     }
 }
