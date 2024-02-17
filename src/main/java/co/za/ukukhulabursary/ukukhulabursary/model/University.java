@@ -8,5 +8,4 @@ public class University {
     private long id;
     private String name;
     private Province province;
-    private UniversityFundApplication universityFundApplication;
 }
