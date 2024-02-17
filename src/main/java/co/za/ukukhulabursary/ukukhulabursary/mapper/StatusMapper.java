@@ -13,7 +13,7 @@ public class StatusMapper implements RowMapper<Status> {
     public Status mapRow(ResultSet rs, int rowNum) throws SQLException {
         Status status = new Status();
 
-        if (rowNum > 0) {
+        if (rowNum > -1) {
             status.setId(rs.getLong("StatusID"));
             status.setType(rs.getString("Type"));
         }

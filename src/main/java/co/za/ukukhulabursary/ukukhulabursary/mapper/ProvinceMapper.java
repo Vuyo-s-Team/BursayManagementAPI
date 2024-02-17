@@ -12,7 +12,7 @@ public class ProvinceMapper implements RowMapper<Province> {
     @Override
     public Province mapRow(ResultSet rs, int rowNum) throws SQLException {
         Province province = new Province();
-        if (rowNum > 0) {
+        if (rowNum > -1) {
             province.setId(rs.getLong("ProvinceID"));
             province.setName(rs.getString("Name"));
         }
