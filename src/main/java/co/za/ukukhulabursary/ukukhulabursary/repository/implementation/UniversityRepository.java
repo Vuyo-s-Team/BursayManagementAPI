@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -26,5 +27,15 @@ public class UniversityRepository implements IUniversityRepository {
     public List<University> findAllByStatusId(long statusId) {
         String sql = "SELECT * FROM [dbo].[udfGetUniversityByStatus](?)";
         return jdbcTemplate.query(sql, universityMapper, statusId);
+    }
+
+    @Override
+    public Optional<University> findById(long id) {
+        String sql = "SELECT * FROM [dbo].[University] WHERE [UniversityID] = ?";
+        List<University> universities = jdbcTemplate.query(sql, universityMapper, id);
+
+        if (!universities.isEmpty())
+            return Optional.of(universities.getFirst());
+        return Optional.empty();
     }
 }

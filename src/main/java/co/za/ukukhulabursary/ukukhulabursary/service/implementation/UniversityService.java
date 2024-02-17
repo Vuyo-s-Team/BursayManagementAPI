@@ -1,6 +1,7 @@
 package co.za.ukukhulabursary.ukukhulabursary.service.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.exception.ProvinceNotFoundException;
+import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
@@ -35,6 +36,12 @@ public class UniversityService implements IUniversityService {
     @Override
     public List<University> retrieveAllUniversities() {
         return universityRepository.findAll();
+    }
+
+    @Override
+    public University retrieveSingleUniversity(long universityId) {
+        return universityRepository.findById(universityId)
+                .orElseThrow(() -> new UniversityNotFoundException(universityId));
     }
 
     @Override

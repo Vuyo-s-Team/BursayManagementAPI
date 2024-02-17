@@ -38,11 +38,18 @@ public class UniversityController {
                 .toList();
         return CollectionModel.of(
                 universities,
-                linkTo(methodOn(UniversityController.class).allUniversities()).withSelfRel()
+                linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities")
         );
     }
 
-    @GetMapping("/{statusId}")
+    @GetMapping("/{universityId}")
+    public EntityModel<University> oneUniversity(@PathVariable("universityId") long universityId) {
+        return universityAssembler.toModel(
+                universityService.retrieveSingleUniversity(universityId)
+        );
+    }
+
+    @GetMapping("/status/{statusId}")
     public CollectionModel<EntityModel<University>> allUniversityByStatus(@PathVariable("statusId") Long statusId) {
         List<EntityModel<University>> universities = universityService.retrieveAllUniversitiesByStatusId(statusId)
                 .stream()

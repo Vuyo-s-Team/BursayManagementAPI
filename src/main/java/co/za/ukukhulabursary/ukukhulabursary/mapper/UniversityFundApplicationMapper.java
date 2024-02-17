@@ -19,7 +19,7 @@ public class UniversityFundApplicationMapper implements RowMapper<UniversityFund
     @Override
     public UniversityFundApplication mapRow(ResultSet rs, int rowNum) throws SQLException {
         UniversityFundApplication universityFundApplication = new UniversityFundApplication();
-        if (rowNum > 0) {
+        if (rowNum > -1) {
             universityFundApplication.setId(rs.getLong("ApplicationID"));
             universityFundApplication.setFundingYear(rs.getDate("FundingYear").toLocalDate());
             universityFundApplication.setComment(rs.getString("Comment"));

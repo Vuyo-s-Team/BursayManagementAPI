@@ -14,6 +14,8 @@ public interface IUniversityService {
 
     public List<University> retrieveAllUniversities();
 
+    public University retrieveSingleUniversity(long universityId);
+
     public List<University> retrieveAllUniversitiesByStatusId(long statusId);
 
     public List<Status> retrieveAllStatuses();

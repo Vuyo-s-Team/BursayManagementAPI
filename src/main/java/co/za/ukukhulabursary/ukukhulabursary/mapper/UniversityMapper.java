@@ -26,7 +26,7 @@ public class UniversityMapper implements RowMapper<University> {
     public University mapRow(ResultSet rs, int rowNum) throws SQLException {
         University university = new University();
 
-        if (rowNum > 0) {
+        if (rowNum > -1) {
             long universityId = rs.getLong("UniversityID");
             university.setId(universityId);
             university.setName(rs.getString("Name"));

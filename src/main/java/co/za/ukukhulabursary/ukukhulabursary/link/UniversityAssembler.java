@@ -14,7 +14,8 @@ public class UniversityAssembler implements RepresentationModelAssembler<Univers
     @Override
     public EntityModel<University> toModel(University university) {
         EntityModel<University> entityModel = EntityModel.of(
-                university
+                university,
+                linkTo(methodOn(UniversityController.class).oneUniversity(university.getId())).withSelfRel()
         );
 
         if (university.getUniversityFundApplication() != null)
