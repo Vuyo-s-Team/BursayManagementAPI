@@ -10,6 +10,9 @@ import co.za.ukukhulabursary.ukukhulabursary.link.DocumentAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
 import co.za.ukukhulabursary.ukukhulabursary.service.implementation.DocumentService;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +36,14 @@ public class DocumentController {
                 .map(documentAssembler::toModel)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(entityModels);
+    }
+
+     @PostMapping
+    public ResponseEntity<EntityModel<Document>> saveDocument(@RequestBody Document document) {
+        Document createdDocument = documentService.saveDocument(document);
+        return ResponseEntity
+                .created(linkTo(methodOn(DocumentController.class).getDocument(createdDocument.getId())).toUri())
+                .body(documentAssembler.toModel(createdDocument));
     }
 
 }
