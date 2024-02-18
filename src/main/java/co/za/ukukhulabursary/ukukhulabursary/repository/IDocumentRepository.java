@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IDocumentRepository {
 
-    List<Document> findAll();
+    List<Document> getAllDocuments();
 
 }
