@@ -14,7 +14,7 @@ public class DocumentMapper implements RowMapper<Document> {
         Document document = new Document();
         document.setDocumentID(rs.getLong("DocumentID"));
         document.setTranscript(rs.getString("transcript"));
-        document.setIdentityDocument(rs.getString("identity_document"));
+        document.setIdentityDocument(rs.getString("identityDocument"));
         document.setApplicationID(rs.getInt("applicationID"));
         return document;
     }
