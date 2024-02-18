@@ -7,5 +7,7 @@ import java.util.List;
 public interface IDocumentRepository {
 
     List<Document> getAllDocuments();
+    
+    Document saveDocument(Document document);
 
 }

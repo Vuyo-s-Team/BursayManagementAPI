@@ -38,7 +38,7 @@ public class DocumentController {
         return ResponseEntity.ok(entityModels);
     }
 
-     @PostMapping
+     @PostMapping("")
     public ResponseEntity<EntityModel<Document>> saveDocument(@RequestBody Document document) {
         Document createdDocument = documentService.saveDocument(document);
         return ResponseEntity
