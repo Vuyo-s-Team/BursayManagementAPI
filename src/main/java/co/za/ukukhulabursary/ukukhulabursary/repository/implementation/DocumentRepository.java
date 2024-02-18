@@ -19,8 +19,8 @@ public class DocumentRepository implements  IDocumentRepository {
     private final DocumentMapper mapper;
 
     @Override
-    public List<Document> findAll() {
-        String sql = "SELECT * FROM [dbo].[Province]";
+    public List<Document> getAllDocuments() {
+        String sql = "SELECT * FROM [dbo].[Document]";
         return jdbcTemplate.query(sql, mapper);
     }
 
