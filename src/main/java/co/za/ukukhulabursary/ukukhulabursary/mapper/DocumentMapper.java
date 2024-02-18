@@ -12,9 +12,9 @@ public class DocumentMapper implements RowMapper<Document> {
     @Override
     public Document mapRow(ResultSet rs, int rowNum) throws SQLException {
         Document document = new Document();
-        document.setDocumentID(rs.getLong("id"));
+        document.setDocumentID(rs.getLong("DocumentID"));
         document.setTranscript(rs.getString("transcript"));
-        document.setIdentityDocument(rs.getString("identityDocument"));
+        document.setIdentityDocument(rs.getString("identity_document"));
         document.setApplicationID(rs.getInt("applicationID"));
         return document;
     }
