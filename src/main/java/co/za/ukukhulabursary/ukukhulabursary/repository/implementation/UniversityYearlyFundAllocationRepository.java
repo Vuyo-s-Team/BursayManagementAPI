@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -33,5 +34,21 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
                 universityYearlyFundAllocationMapper,
                 year
         );
+    }
+
+    @Override
+    public Optional<UniversityYearlyFundAllocation> findUniversityFundingForYear(int year, long universityId) {
+        String sql = "SELECT * FROM [dbo].[vUniversityFundAllocation] " +
+                     "WHERE YEAR([FinancialYearStart]) = ? AND [UniversityId] = ?";
+        List<UniversityYearlyFundAllocation> universityYearlyFundAllocation = jdbcTemplate.query(
+                sql,
+                universityYearlyFundAllocationMapper,
+                year,
+                universityId
+        );
+
+        if (!universityYearlyFundAllocation.isEmpty())
+            return Optional.of(universityYearlyFundAllocation.getFirst());
+        return Optional.empty();
     }
 }

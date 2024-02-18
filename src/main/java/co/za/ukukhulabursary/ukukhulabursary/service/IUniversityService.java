@@ -7,6 +7,7 @@ import co.za.ukukhulabursary.ukukhulabursary.model.University;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUniversityService {
 
@@ -27,4 +28,6 @@ public interface IUniversityService {
     public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingUpToDate();
 
     public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingByYear(int year);
+
+    public UniversityYearlyFundAllocation retrieveUniversityFundingForYear(int year, long universityId);
 }

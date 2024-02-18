@@ -101,6 +101,14 @@ public class UniversityController {
         );
     }
 
+    @GetMapping("/funding/{year}/{universityId}")
+    public EntityModel<UniversityYearlyFundAllocation> universityFundingForAYear(@PathVariable("year") int year,
+                                                                                 @PathVariable("universityId") long id) {
+        return universityYearlyFundAllocationAssembler.toModel(
+                universityService.retrieveUniversityFundingForYear(year, id)
+        );
+    }
+
     @GetMapping("/provinces")
     public CollectionModel<EntityModel<Province>> allProvinces() {
         List<EntityModel<Province>> provinces = universityService.retrieveAllUniversityProvinces()
