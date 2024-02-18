@@ -1,13 +1,10 @@
 package co.za.ukukhulabursary.ukukhulabursary.service;
 
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
-import co.za.ukukhulabursary.ukukhulabursary.model.Province;
-import co.za.ukukhulabursary.ukukhulabursary.model.Status;
-import co.za.ukukhulabursary.ukukhulabursary.model.University;
-import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
+import co.za.ukukhulabursary.ukukhulabursary.model.*;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IUniversityService {
 
@@ -29,5 +26,9 @@ public interface IUniversityService {
 
     public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingByYear(int year);
 
-    public UniversityYearlyFundAllocation retrieveUniversityFundingForYear(int year, long universityId);
+    public List<UniversityYearlyFundAllocation> retrieveUniversityFundingForYear(int year, long universityId);
+
+    public UniversityFundApplication updateUniversityApplicationStatus(long universityId, long statusId);
+
+    public void allocateUniversityFunding(UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO);
 }
