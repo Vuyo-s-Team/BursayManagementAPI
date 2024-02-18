@@ -7,16 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.link.DocumentAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
 import co.za.ukukhulabursary.ukukhulabursary.service.implementation.DocumentService;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/document")
@@ -40,10 +38,18 @@ public class DocumentController {
         return ResponseEntity.ok(entityModels);
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<EntityModel<Document>> saveDocument(@RequestBody Document document) {
          documentService.saveDocument(document);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Document> getDocumentById(@PathVariable Long id) {
+        Optional<Document> optionalDocument = documentService.getDocumentById(id);
+        return optionalDocument
+                .map(document -> ResponseEntity.ok(document)) 
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

@@ -19,4 +19,5 @@ public class DocumentAssembler implements RepresentationModelAssembler<Document,
                 linkTo(methodOn(DocumentController.class).getAllDocuments()).withRel("documents")
         );
     }
+
 }
