@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class UniversityMapper implements RowMapper<University> {
     public University mapRow(ResultSet rs, int rowNum) throws SQLException {
         University university = new University();
 
-        if (rowNum > 0) {
+        if (rowNum > -1) {
             long universityId = rs.getLong("UniversityID");
             university.setId(universityId);
             university.setName(rs.getString("Name"));
@@ -35,10 +36,10 @@ public class UniversityMapper implements RowMapper<University> {
                             .orElseThrow(() -> new ProvinceNotFoundException(provinceId));
             university.setProvince(province);
 
-            UniversityFundApplication universityFundApplication = universityFundApplicationRepository
-                    .findByUniversityId(universityId)
-                    .orElseThrow(() -> new UniversityFundApplicationNotFoundException(universityId));
-            university.setUniversityFundApplication(universityFundApplication);
+            Optional<UniversityFundApplication> universityFundApplication = universityFundApplicationRepository
+                    .findByUniversityId(universityId);
+
+            universityFundApplication.ifPresent(university::setUniversityFundApplication);
         }
         return university;
     }
