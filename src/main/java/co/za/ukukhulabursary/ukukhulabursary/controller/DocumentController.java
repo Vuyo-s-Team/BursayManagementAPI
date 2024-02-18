@@ -3,9 +3,11 @@ package co.za.ukukhulabursary.ukukhulabursary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.link.DocumentAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
 import co.za.ukukhulabursary.ukukhulabursary.service.implementation.DocumentService;
@@ -38,12 +40,10 @@ public class DocumentController {
         return ResponseEntity.ok(entityModels);
     }
 
-     @PostMapping("")
+    @PostMapping
     public ResponseEntity<EntityModel<Document>> saveDocument(@RequestBody Document document) {
-        Document createdDocument = documentService.saveDocument(document);
-        return ResponseEntity
-                .created(linkTo(methodOn(DocumentController.class).getDocument(createdDocument.getId())).toUri())
-                .body(documentAssembler.toModel(createdDocument));
+         documentService.saveDocument(document);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
