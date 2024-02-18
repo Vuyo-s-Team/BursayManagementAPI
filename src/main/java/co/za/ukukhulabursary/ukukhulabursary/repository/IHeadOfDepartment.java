@@ -8,4 +8,5 @@ public interface IHeadOfDepartment {
     public List<HeadOfDepartment> findAll();
 
     public  HeadOfDepartment findByID(long id);
+
 }

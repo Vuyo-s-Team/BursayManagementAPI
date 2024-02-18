@@ -6,7 +6,7 @@ import lombok.Data;
 public class HeadOfDepartment {
     private long id;
     private University university;
-    private long userID;
-    private long departmentID;
+    private User user;
+    private Department department;
 
 }
