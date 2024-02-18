@@ -15,7 +15,8 @@ public class UniversityAssembler implements RepresentationModelAssembler<Univers
     public EntityModel<University> toModel(University university) {
         EntityModel<University> entityModel = EntityModel.of(
                 university,
-                linkTo(methodOn(UniversityController.class).oneUniversity(university.getId())).withSelfRel()
+                linkTo(methodOn(UniversityController.class).oneUniversity(university.getId())).withSelfRel(),
+                linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities")
         );
 
         if (university.getUniversityFundApplication() != null)
