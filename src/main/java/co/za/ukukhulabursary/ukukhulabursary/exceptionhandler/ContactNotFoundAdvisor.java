@@ -1,22 +1,23 @@
 package co.za.ukukhulabursary.ukukhulabursary.exceptionhandler;
 
-import co.za.ukukhulabursary.ukukhulabursary.exception.HeadOfDepartmentNotFoundException;
+import co.za.ukukhulabursary.ukukhulabursary.exception.ContactNotFoundException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.Map;
 
-public class HeadOfDepartmentNotFoundAdviser {
-
+@ControllerAdvice
+public class ContactNotFoundAdvisor {
     @ResponseBody
-    @ExceptionHandler(HeadOfDepartmentNotFoundException.class)
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public EntityModel<Map<String, String>> headOfDepartmentNotFoundExceptionHandler(HeadOfDepartmentNotFoundException except){
+    public EntityModel<Map<String, String>> ContactNotFoundExceptionHandler(ContactNotFoundException except){
         return EntityModel.of(
-                Map.of("message", except.getMessage())
+                Map.of("message",except.getMessage())
         );
     }
 }
