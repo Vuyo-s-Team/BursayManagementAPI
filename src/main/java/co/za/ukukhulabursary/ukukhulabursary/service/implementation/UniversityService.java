@@ -1,12 +1,11 @@
 package co.za.ukukhulabursary.ukukhulabursary.service.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.exception.ProvinceNotFoundException;
+import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityFundApplicationNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityNotFoundException;
-import co.za.ukukhulabursary.ukukhulabursary.model.Province;
-import co.za.ukukhulabursary.ukukhulabursary.model.Status;
-import co.za.ukukhulabursary.ukukhulabursary.model.University;
-import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.model.*;
 import co.za.ukukhulabursary.ukukhulabursary.repository.*;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUniversityService;
 import lombok.AllArgsConstructor;
@@ -22,6 +21,7 @@ public class UniversityService implements IUniversityService {
     private final IUniversityRepository universityRepository;
     private final IStatusRepository statusRepository;
     private final IUniversityYearlyFundAllocationRepository universityYearlyFundAllocationRepository;
+    private final IUniversityFundApplicationRepository universityFundApplicationRepository;
 
     @Override
     public List<Province> retrieveAllUniversityProvinces() {
@@ -68,5 +68,22 @@ public class UniversityService implements IUniversityService {
     @Override
     public List<UniversityYearlyFundAllocation> retrieveAllUniversityFundingByYear(int year) {
         return universityYearlyFundAllocationRepository.findAllUniversitiesFundingByYear(year);
+    }
+
+    @Override
+    public List<UniversityYearlyFundAllocation> retrieveUniversityFundingForYear(int year, long universityId) {
+        return universityYearlyFundAllocationRepository.findUniversityFundingForYear(year, universityId);
+    }
+
+    @Override
+    public UniversityFundApplication updateUniversityApplicationStatus(long universityId, long statusId) {
+        return universityFundApplicationRepository.updateUniversityApplicationStatus(universityId, statusId)
+                .orElseThrow(() -> new UniversityFundApplicationNotFoundException(universityId));
+    }
+
+    @Override
+    public void allocateUniversityFunding(
+            UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO) {
+        universityYearlyFundAllocationRepository.save(universityYearlyFundAllocationDTO);
     }
 }

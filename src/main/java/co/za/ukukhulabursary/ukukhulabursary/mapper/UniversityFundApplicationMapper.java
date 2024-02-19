@@ -23,6 +23,7 @@ public class UniversityFundApplicationMapper implements RowMapper<UniversityFund
             universityFundApplication.setId(rs.getLong("ApplicationID"));
             universityFundApplication.setFundingYear(rs.getDate("FundingYear").toLocalDate());
             universityFundApplication.setComment(rs.getString("Comment"));
+            universityFundApplication.setUniversityID(rs.getLong("UniversityID"));
 
             long statusId = rs.getLong("StatusID");
             Status status = statusRepository.findById(statusId)
