@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ContactDetails {
-    private long contactID;
+    private long id;
     private String email;
     private  String phoneNumber;
 }

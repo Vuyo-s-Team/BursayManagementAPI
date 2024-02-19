@@ -2,14 +2,13 @@ package co.za.ukukhulabursary.ukukhulabursary.service;
 
 
 
-import co.za.ukukhulabursary.ukukhulabursary.model.Contact;
+import co.za.ukukhulabursary.ukukhulabursary.model.ContactDetails;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IUserService {
 
-    public List<Contact> retrieveAllUserContacts();
+    public List<ContactDetails> retrieveAllUserContacts();
 
-    public Contact retrieveSingleUserContact(long id);
+    public ContactDetails retrieveSingleUserContact(long id);
 }

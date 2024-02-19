@@ -1,7 +1,8 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
 import co.za.ukukhulabursary.ukukhulabursary.link.ContactAssembler;
-import co.za.ukukhulabursary.ukukhulabursary.model.Contact;
+import co.za.ukukhulabursary.ukukhulabursary.mapper.ContactDetailsMapper;
+import co.za.ukukhulabursary.ukukhulabursary.model.ContactDetails;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
@@ -19,8 +20,8 @@ public class UserController {
     private final IUserService userService;
     private final ContactAssembler contactAssembler;
     @GetMapping("/contact")
-    public CollectionModel<EntityModel<Contact>> allContacts(){
-        List<EntityModel<Contact>> contacts = userService.retrieveAllUserContacts().stream().map(contactAssembler::toModel).toList();
+    public CollectionModel<EntityModel<ContactDetails>> allContacts(){
+        List<EntityModel<ContactDetails>> contacts = userService.retrieveAllUserContacts().stream().map(contactAssembler::toModel).toList();
         return CollectionModel.of(contacts);
     }
 }

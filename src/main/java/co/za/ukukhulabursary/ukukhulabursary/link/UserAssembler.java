@@ -1,6 +1,5 @@
 package co.za.ukukhulabursary.ukukhulabursary.link;
 
-import co.za.ukukhulabursary.ukukhulabursary.model.Contact;
 import co.za.ukukhulabursary.ukukhulabursary.model.User;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

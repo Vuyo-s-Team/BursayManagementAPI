@@ -28,4 +28,9 @@ public class ContactDetailsRepository implements IContactDetailsRepository {
 
         return Optional.empty();
     }
+
+    public List<ContactDetails> findAll(){
+        String sql = "SELECT * FROM [dbo].[ContactDetails]";
+        return jdbcTemplate.query(sql, mapper);
+    }
 }
