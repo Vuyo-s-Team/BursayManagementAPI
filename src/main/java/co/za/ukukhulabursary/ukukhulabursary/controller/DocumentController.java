@@ -52,4 +52,25 @@ public class DocumentController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Document> updateDocument(@PathVariable int id, @RequestBody Document updatedDocument) {
+        try {
+            Optional<Document> optionalExistingDocument = documentService.getDocumentById(id);
+
+            if (optionalExistingDocument.isPresent()) {
+                Document existingDocument = optionalExistingDocument.get();
+                existingDocument.setTranscript(updatedDocument.getTranscript());
+                existingDocument.setIdentityDocument(updatedDocument.getIdentityDocument());
+                existingDocument.setApplicationID(updatedDocument.getApplicationID());
+                Document updated = documentService.updateDocument(existingDocument);
+                return ResponseEntity.ok(updated);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }
