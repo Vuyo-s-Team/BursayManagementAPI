@@ -1,17 +1,21 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
 
+import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.model.User;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UserRepository;
+import co.za.ukukhulabursary.ukukhulabursary.service.implementation.AdminService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/api/v1/bbdadmin")
 public class AdminController {
 
+    private  final  AdminService adminService;
     @GetMapping("/funded/students")
     public  void SeeAllFundedStudents(){
 
@@ -27,14 +31,15 @@ public class AdminController {
 
     }
 
-    @PutMapping("/funds/university")
-    public  void  AllocateUninversityFunds(){
-
+    @GetMapping("/university/funds/year/{year}")
+    public  List<UniversityYearlyFundAllocation> AllocateUninversityFunds(@PathVariable int year){
+       return adminService.SerchAllUniversitiesFundingByYear(year);
     }
-    @GetMapping("/funded/students")
+    @GetMapping("/funded/studentz")
     public  void ViewAllFinalYearStudents(){
 
     }
+
 
 
 }

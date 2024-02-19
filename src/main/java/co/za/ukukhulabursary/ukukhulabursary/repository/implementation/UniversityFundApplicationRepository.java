@@ -26,4 +26,6 @@ public class UniversityFundApplicationRepository implements IUniversityFundAppli
             return Optional.of(universityFundApplications.getFirst());
         return Optional.empty();
     }
+
+
 }

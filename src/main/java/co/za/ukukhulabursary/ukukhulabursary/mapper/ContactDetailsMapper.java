@@ -12,7 +12,7 @@ public class ContactDetailsMapper  implements RowMapper<ContactDetails> {
     @Override
     public ContactDetails mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
         ContactDetails contactDetails = new ContactDetails();
-        if (rowNumber > 0) {
+        if (rowNumber > -1) {
             contactDetails.setContactID(resultSet.getLong("ContactID"));
             contactDetails.setEmail(resultSet.getString("Email"));
             contactDetails.setPhoneNumber(resultSet.getString("PhoneNumber"));

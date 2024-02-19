@@ -6,12 +6,12 @@ import java.util.Date;
 
 @Data
 public class Student {
-    private  long StudentID;
-    private  String IDNumber;
-    private Date  BirthDate;
-    private int Age;
-    private  long UserID;
-    private  long GenderID;
-    private  long  RaceID;
-    private  long UniversityID;
+    private  long studentID;
+    private  String idNumber;
+    private Date birthDate;
+    private short age;
+    private  User user;
+    private  Gender gender;
+    private  Race race;
+    private  University university;
 }
