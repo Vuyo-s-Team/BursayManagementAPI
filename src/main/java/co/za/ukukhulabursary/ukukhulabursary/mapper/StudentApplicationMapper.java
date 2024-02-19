@@ -21,7 +21,7 @@ public class StudentApplicationMapper implements RowMapper<StudentApplication> {
         studentApplication.setComment(rs.getString("Comment"));
         studentApplication.setStudentID(rs.getInt("StudentID"));
         studentApplication.setProgramID(rs.getInt("ProgramID"));
-        studentApplication.setStatusID(rs.getString("StatusID"));
+        studentApplication.setStatusID(rs.getInt("StatusID"));
         return studentApplication;
     }
 }
