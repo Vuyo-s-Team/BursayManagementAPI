@@ -38,7 +38,7 @@ public class StudentRepository implements IStudentRepository {
         String sql ="SELECT * FROM [dbo].[Student]\n" +
                 "INNER JOIN [StudentApplication] ON [Student].StudentID =[StudentApplication].StudentID\n" +
                 "WHERE [StudentApplication].StatusID =1";
-        return jdbcTemplate.query(sql, studentMapper);
+        return Optional.of(jdbcTemplate.query(sql, studentMapper));
 
 
 

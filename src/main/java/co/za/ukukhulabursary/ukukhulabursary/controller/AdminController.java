@@ -1,6 +1,7 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityMoneySpentDTO;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.model.User;
 import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UserRepository;
@@ -31,9 +32,13 @@ public class AdminController {
 
     }
 
-    @GetMapping("/university/funds/year/{year}")
-    public  List<UniversityYearlyFundAllocation> AllocateUninversityFunds(@PathVariable int year){
+    @GetMapping("/university/funds/{year}")
+    public  List<UniversityYearlyFundAllocation> GettheUninversityFundsByYear(@PathVariable int year){
        return adminService.SerchAllUniversitiesFundingByYear(year);
+    }
+    @GetMapping("/university/money/{year}")
+    public  List<UniversityMoneySpentDTO> SearchUninversityMoneySpentByYear(@PathVariable int year){
+        return adminService.SearchUniversityMoneySpentByYear(year);
     }
     @GetMapping("/funded/studentz")
     public  void ViewAllFinalYearStudents(){
