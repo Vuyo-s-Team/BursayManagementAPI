@@ -11,4 +11,5 @@ public class UniversityFundApplication {
     private LocalDate fundingYear;
     private Status status;
     private String comment;
+    private long universityID;
 }
