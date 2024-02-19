@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface IUniversityFundApplicationRepository {
 
     public Optional<UniversityFundApplication> findByUniversityId(long universityId);
+
+    public Optional<UniversityFundApplication> updateUniversityApplicationStatus(long universityId, long statusId);
 }
