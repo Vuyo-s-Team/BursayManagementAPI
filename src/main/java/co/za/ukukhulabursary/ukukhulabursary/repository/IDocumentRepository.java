@@ -9,10 +9,9 @@ public interface IDocumentRepository {
 
     List<Document> getAllDocuments();
 
-     Optional<Document> getDocumentById(long DocumentID);
+    Optional<Document> getDocumentById(long DocumentID);
     
     Document saveDocument(Document document);
-
 
     Optional<Document> updateDocument(long documentID, Document updatedDocument);
 
