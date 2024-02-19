@@ -3,8 +3,9 @@ package co.za.ukukhulabursary.ukukhulabursary.repository;
 import co.za.ukukhulabursary.ukukhulabursary.model.Contact;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface IContact {
+public interface IContactRepository {
     public List<Contact> findAll();
-    public Contact findById();
+    public Optional<Contact> findById(long id);
 }
