@@ -15,6 +15,6 @@ public class StudentApplication {
     private String comment;
     private int studentID;
     private int programID;
-    private String statusID;
+    private int statusID;
 
 }
