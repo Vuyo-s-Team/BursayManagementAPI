@@ -1,14 +1,12 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.link.ProvinceAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.link.StatusAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.link.UniversityAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.link.UniversityYearlyFundAllocationAssembler;
-import co.za.ukukhulabursary.ukukhulabursary.model.Province;
-import co.za.ukukhulabursary.ukukhulabursary.model.Status;
-import co.za.ukukhulabursary.ukukhulabursary.model.University;
-import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.model.*;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUniversityService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
@@ -72,6 +70,16 @@ public class UniversityController {
         );
     }
 
+    @PutMapping("/status/{universityId}/{statusId}")
+    public ResponseEntity<UniversityFundApplication> updateUniversityApplicationStatus(
+            @PathVariable("universityId") long universityId,
+            @PathVariable("statusId") long statusId) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        universityService.updateUniversityApplicationStatus(universityId, statusId)
+                );
+    }
+
     @GetMapping("/funding")
     public CollectionModel<EntityModel<UniversityYearlyFundAllocation>> allUniversityFundingUpToDate() {
         List<EntityModel<UniversityYearlyFundAllocation>> fundAllocations = universityService
@@ -84,6 +92,13 @@ public class UniversityController {
                 linkTo(methodOn(UniversityController.class).allUniversityFundingUpToDate()).withSelfRel(),
                 linkTo(methodOn(UniversityController.class).allUniversities()).withRel("universities")
         );
+    }
+
+    @PostMapping("/funding")
+    public ResponseEntity<?> allocateUniversityFunding(
+            @RequestBody UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO) {
+        universityService.allocateUniversityFunding(universityYearlyFundAllocationDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/funding/{year}")
@@ -102,10 +117,15 @@ public class UniversityController {
     }
 
     @GetMapping("/funding/{year}/{universityId}")
-    public EntityModel<UniversityYearlyFundAllocation> universityFundingForAYear(@PathVariable("year") int year,
+    public CollectionModel<EntityModel<UniversityYearlyFundAllocation>> universityFundingForAYear(@PathVariable("year") int year,
                                                                                  @PathVariable("universityId") long id) {
-        return universityYearlyFundAllocationAssembler.toModel(
-                universityService.retrieveUniversityFundingForYear(year, id)
+        List<EntityModel<UniversityYearlyFundAllocation>> funding = universityService
+                .retrieveUniversityFundingForYear(year, id)
+                .stream()
+                .map(universityYearlyFundAllocationAssembler::toModel)
+                .toList();
+        return CollectionModel.of(
+                funding
         );
     }
 

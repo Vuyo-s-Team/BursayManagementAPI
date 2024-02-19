@@ -1,5 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityYearlyFundAllocationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityYearlyFundAllocationRepository;
@@ -37,18 +38,29 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
     }
 
     @Override
-    public Optional<UniversityYearlyFundAllocation> findUniversityFundingForYear(int year, long universityId) {
+    public List<UniversityYearlyFundAllocation> findUniversityFundingForYear(int year, long universityId) {
         String sql = "SELECT * FROM [dbo].[vUniversityFundAllocation] " +
                      "WHERE YEAR([FinancialYearStart]) = ? AND [UniversityId] = ?";
-        List<UniversityYearlyFundAllocation> universityYearlyFundAllocation = jdbcTemplate.query(
+        return jdbcTemplate.query(
                 sql,
                 universityYearlyFundAllocationMapper,
                 year,
                 universityId
         );
+    }
 
-        if (!universityYearlyFundAllocation.isEmpty())
-            return Optional.of(universityYearlyFundAllocation.getFirst());
-        return Optional.empty();
+    @Override
+    public void save(
+            UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO) {
+        String sql = "INSERT INTO [dbo].[UniversityYearlyFundAllocation]" +
+                     "([Budget], [RemainingBudget], [UniversityID], [YearlyFundID]) " +
+                     "VALUES (?, ?, ?, ?)";
+        Object[] args = new Object[] {
+                universityYearlyFundAllocationDTO.getBudget(),
+                universityYearlyFundAllocationDTO.getBudget(),
+                universityYearlyFundAllocationDTO.getUniversityId(),
+                universityYearlyFundAllocationDTO.getYearlyFundId()
+        };
+        jdbcTemplate.update(sql, args);
     }
 }
