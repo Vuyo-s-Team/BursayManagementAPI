@@ -3,16 +3,14 @@ package co.za.ukukhulabursary.ukukhulabursary.repository;
 import java.util.List;
 import java.util.Optional;
 
-import co.za.ukukhulabursary.ukukhulabursary.model.Document;
+import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
 
 public interface IStudentApplicationRepository {
-     List<Document> getAllStudentApplication();
+     List<StudentApplication> getAllStudentApplications();
 
-    Optional<Document> getStudentApplicationById(long DocumentID);
+    Optional<StudentApplication> getStudentApplicationById(long ApplicationID);
     
-    Document saveStudentApplication(Document document);
+    StudentApplication saveStudentApplication(StudentApplication document);
 
-    Optional<Document> updateStudentApplication(long documentID, Document updatedDocument);
-
-    
+    Optional<StudentApplication> updateStudentApplication(long ApplicationID, StudentApplication updatedApplication);
 }
