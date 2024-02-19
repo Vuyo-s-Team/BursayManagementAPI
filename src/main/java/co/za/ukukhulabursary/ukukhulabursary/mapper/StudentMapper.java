@@ -3,7 +3,6 @@ package co.za.ukukhulabursary.ukukhulabursary.mapper;
 import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.exception.UserNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.*;
-import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.GenderRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.RaceRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UniversityRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UserRepository;
@@ -13,14 +12,13 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
 @Component
 @AllArgsConstructor
 public class StudentMapper implements RowMapper<Student> {
     private final UserRepository userRepository;
     private final UniversityRepository universityRepository;
-    private  final GenderRepository genderRepository;
+    private  final Gender genderRepository;
     private  final RaceRepository raceRepository;
     @Override
     public Student mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
