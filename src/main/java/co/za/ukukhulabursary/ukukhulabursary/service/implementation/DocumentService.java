@@ -35,24 +35,15 @@ public class DocumentService {
     public Document updateDocument(Document updatedDocument) {
         Long documentID = updatedDocument.getDocumentID();
         
-        Optional<Document> existingDocumentOptional = documentRepository.getDocumentById(documentID);
-        
-        if (existingDocumentOptional.isPresent()) {
-            Document existingDocument = existingDocumentOptional.get();
-            existingDocument.setTranscript(updatedDocument.getTranscript());
-            existingDocument.setIdentityDocument(updatedDocument.getIdentityDocument());
-            existingDocument.setApplicationID(updatedDocument.getApplicationID());
-    
-            Optional<Document> updatedDocumentOptional = documentRepository.updateDocument(documentID, existingDocument);
-            if (updatedDocumentOptional.isPresent()) {
-                return updatedDocumentOptional.get();
-            } else {
-                throw new UpdateDocumentFailedException("Failed to update document with ID " + documentID);
-            }
-        } else {
-            throw new DocumentNotFoundException("Document with ID " + documentID + " not found");
-        }
-    }
-    
+        Document existingDocument = documentRepository.getDocumentById(documentID)
+            .orElseThrow(() -> new DocumentNotFoundException("Document with ID " + documentID + " not found"));
 
+        existingDocument.setTranscript(updatedDocument.getTranscript());
+        existingDocument.setIdentityDocument(updatedDocument.getIdentityDocument());
+        existingDocument.setApplicationID(updatedDocument.getApplicationID());
+
+        return  documentRepository.updateDocument(documentID, existingDocument)
+            .orElseThrow(() -> new UpdateDocumentFailedException("Failed to update document with ID " + documentID));
+        
+    }
 }

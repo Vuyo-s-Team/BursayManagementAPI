@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class Document {
    @Id
-    private Long DocumentID;
-    private String Transcript;
-    private String IdentityDocument;
-    private Integer ApplicationID;
+    private Long documentID;
+    private String transcript;
+    private String identityDocument;
+    private Integer applicationID;
     
 }
