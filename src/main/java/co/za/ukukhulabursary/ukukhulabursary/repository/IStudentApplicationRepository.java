@@ -13,6 +13,4 @@ public interface IStudentApplicationRepository {
     Document saveStudentApplication(Document document);
 
     Optional<Document> updateStudentApplication(long documentID, Document updatedDocument);
-
-    
 }
