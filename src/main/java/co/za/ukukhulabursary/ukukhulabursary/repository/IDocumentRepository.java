@@ -13,4 +13,8 @@ public interface IDocumentRepository {
     
     Document saveDocument(Document document);
 
+
+    Optional<Document> updateDocument(long documentID, Document updatedDocument);
+
+
 }

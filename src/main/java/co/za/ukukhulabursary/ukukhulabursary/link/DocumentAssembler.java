@@ -15,9 +15,8 @@ public class DocumentAssembler implements RepresentationModelAssembler<Document,
     public EntityModel<Document> toModel(Document document) {
         return EntityModel.of(
                 document,
-                linkTo(methodOn(DocumentController.class).getAllDocuments()).withSelfRel(),
+                linkTo(methodOn(DocumentController.class).getDocumentById(document.getDocumentID())).withSelfRel(),
                 linkTo(methodOn(DocumentController.class).getAllDocuments()).withRel("documents")
         );
     }
-
 }

@@ -19,4 +19,3 @@ public class DocumentMapper implements RowMapper<Document> {
         return document;
     }
 }
-

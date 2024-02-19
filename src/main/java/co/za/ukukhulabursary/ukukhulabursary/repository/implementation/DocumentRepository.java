@@ -2,7 +2,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.DocumentMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
-import co.za.ukukhulabursary.ukukhulabursary.model.Document;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IDocumentRepository;
 
 import lombok.AllArgsConstructor;
@@ -34,12 +33,30 @@ public class DocumentRepository implements  IDocumentRepository {
             return Optional.of(Document.getFirst());
         return Optional.empty();
     }
-    
+
     @Override
     public Document saveDocument(Document document) {
         String sql = "INSERT INTO [dbo].[Document] (Transcript, IdentityDocument, ApplicationID) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, document.getTranscript(), document.getIdentityDocument(), document.getApplicationID());
         return document;
     }
+
+    @Override
+    public Optional<Document> updateDocument(long documentID, Document updatedDocument) {
+        String sql = "UPDATE [dbo].[Document] SET Transcript = ?, IdentityDocument = ?, ApplicationID = ? WHERE DocumentID = ?";
+        
+        int rowsUpdated = jdbcTemplate.update(sql, 
+                updatedDocument.getTranscript(), 
+                updatedDocument.getIdentityDocument(), 
+                updatedDocument.getApplicationID(), 
+                documentID);
+        
+        if (rowsUpdated > 0) {
+            return Optional.of(updatedDocument);
+        } else {
+            return Optional.empty();
+        }
+    }
+
 
 }
