@@ -23,11 +23,10 @@ public class DocumentService {
         return documentRepository.getAllDocuments();
     }
 
-    public  Optional<Document> getDocumentById(long DocumentID){
-        return documentRepository.getDocumentById(DocumentID);
-
+    public Optional<Document> getDocumentById(long documentID) {
+        return documentRepository.getDocumentById(documentID);          
     }
-
+    
     public Document saveDocument(Document document) {
         return documentRepository.saveDocument(document);
     }
