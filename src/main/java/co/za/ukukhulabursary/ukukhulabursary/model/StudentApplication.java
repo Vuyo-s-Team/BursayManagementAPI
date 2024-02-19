@@ -8,8 +8,8 @@ import lombok.Data;
 public class StudentApplication {
 
     private long applicationID ;
-    private int yearOfStudy;
-    private int averageGrade;
+    private int yearOfStudies;
+    private double averageGrade;
     private double amount;
     private LocalDate dateOfApplication;
     private String comment;

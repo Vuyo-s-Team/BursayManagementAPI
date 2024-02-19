@@ -7,12 +7,22 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
-public class StudentApplicationMapper implements RowMapper<StudentApplicationMapper> {
+
+public class StudentApplicationMapper implements RowMapper<StudentApplication> {
+
     @Override
-    public StudentApplicationMapper mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+    public StudentApplication mapRow(ResultSet rs, int rowNum) throws SQLException {
         StudentApplication studentApplication = new StudentApplication();
-        return  studentApplication;
+        studentApplication.setApplicationID(rs.getLong("ApplicationID"));
+        studentApplication.setYearOfStudies(rs.getInt("YearOfStudies"));
+        studentApplication.setAverageGrade(rs.getDouble("AverageGrade"));
+        studentApplication.setAmount(rs.getDouble("Amount"));
+        studentApplication.setDateOfApplication(rs.getDate("DateOfApplication").toLocalDate());
+        studentApplication.setComment(rs.getString("Comment"));
+        studentApplication.setStudentID(rs.getInt("StudentID"));
+        studentApplication.setProgramID(rs.getInt("ProgramID"));
+        studentApplication.setStatusID(rs.getString("StatusID"));
+        return studentApplication;
 
     }
 }
