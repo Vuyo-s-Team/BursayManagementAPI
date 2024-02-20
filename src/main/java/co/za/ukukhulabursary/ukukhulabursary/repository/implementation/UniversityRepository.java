@@ -3,6 +3,7 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
+import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class UniversityRepository implements IUniversityRepository {
+public class UniversityRepository implements IRepository<University> {
 
     private final JdbcTemplate jdbcTemplate;
     private final UniversityMapper universityMapper;
@@ -24,7 +25,7 @@ public class UniversityRepository implements IUniversityRepository {
         return jdbcTemplate.query(sql, universityMapper);
     }
 
-    @Override
+
     public List<University> findAllByStatusId(long statusId) {
         String sql = "SELECT * FROM [dbo].[udfGetUniversityByStatus](?)";
         return jdbcTemplate.query(sql, universityMapper, statusId);
@@ -40,7 +41,7 @@ public class UniversityRepository implements IUniversityRepository {
         return Optional.empty();
     }
 
-    @Override
+
     public void save(UniversityAndApplicationDTO universityApplication) {
         String sql = "EXEC [dbo].[uspCreateUniversityAndApplication] " +
                      "@Name = ?, @ProvinceID = ?, @Comment = ?, @StatusID = ?";
