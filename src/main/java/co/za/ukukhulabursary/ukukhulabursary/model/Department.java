@@ -3,8 +3,7 @@ package co.za.ukukhulabursary.ukukhulabursary.model;
 import lombok.Data;
 
 @Data
-public class ContactDetails {
+public class Department {
     private long id;
-    private String email;
-    private  String phoneNumber;
+    private String name;
 }

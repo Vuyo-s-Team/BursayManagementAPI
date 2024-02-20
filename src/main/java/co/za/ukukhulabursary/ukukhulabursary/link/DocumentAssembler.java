@@ -1,6 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.link;
 
-import co.za.ukukhulabursary.ukukhulabursary.controller.DocumentController;
+import co.za.ukukhulabursary.ukukhulabursary.mapper.BBDYearlyFundMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
@@ -15,8 +15,8 @@ public class DocumentAssembler implements RepresentationModelAssembler<Document,
     public EntityModel<Document> toModel(Document document) {
         return EntityModel.of(
                 document,
-                linkTo(methodOn(DocumentController.class).getDocumentById(document.getDocumentID())).withSelfRel(),
-                linkTo(methodOn(DocumentController.class).getAllDocuments()).withRel("documents")
+                linkTo(methodOn(BBDYearlyFundMapper.DocumentController.class).getDocumentById(document.getDocumentID())).withSelfRel(),
+                linkTo(methodOn(BBDYearlyFundMapper.DocumentController.class).getAllDocuments()).withRel("documents")
         );
     }
 }

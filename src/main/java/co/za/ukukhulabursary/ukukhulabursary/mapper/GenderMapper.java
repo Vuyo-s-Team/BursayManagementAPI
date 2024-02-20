@@ -1,6 +1,7 @@
 package co.za.ukukhulabursary.ukukhulabursary.mapper;
 
 import co.za.ukukhulabursary.ukukhulabursary.model.Gender;
+import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
+@AllArgsConstructor
 public class GenderMapper implements RowMapper<Gender> {
     @Override
     public Gender mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
