@@ -1,5 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.repository;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityMoneySpentDTO;
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 
@@ -12,6 +13,7 @@ public interface IUniversityYearlyFundAllocationRepository {
     public List<UniversityYearlyFundAllocation> findAllUniversitiesFundingByYear(int year);
 
     public List<UniversityYearlyFundAllocation> findUniversityFundingForYear(int year, long universityId);
+    public List<UniversityMoneySpentDTO>findUniverityAndTheMoneyTheirSpent(int year);
 
     public void save(UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO);
 }

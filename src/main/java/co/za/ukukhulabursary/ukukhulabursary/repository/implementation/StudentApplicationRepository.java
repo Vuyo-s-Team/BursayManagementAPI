@@ -48,9 +48,9 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
             studentApplication.getAmount(), 
             studentApplication.getDateOfApplication(), 
             studentApplication.getComment(), 
-            studentApplication.getStudentID(), 
-            studentApplication.getProgramID(), 
-            studentApplication.getStatusID()
+            studentApplication.getStudent(),
+            studentApplication.getProgram(),
+            studentApplication.getStatus()
         );
         return studentApplication;
     }
@@ -74,9 +74,9 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
             updatedApplication.getAmount(), 
             updatedApplication.getDateOfApplication(), 
             updatedApplication.getComment(), 
-            updatedApplication.getStudentID(), 
-            updatedApplication.getProgramID(), 
-            updatedApplication.getStatusID(), 
+            updatedApplication.getStudent(),
+            updatedApplication.getProgram(),
+            updatedApplication.getStatus(),
             applicationID
         );
     

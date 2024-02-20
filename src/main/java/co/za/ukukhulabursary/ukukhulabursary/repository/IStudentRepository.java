@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface IStudentRepository {
     public List<Student> findAll();
     public Optional<Student> findById(long id);
-    public List<Student> ListOfFundedStudents();
+    public Optional<List<Student>> ListOfFundedStudents();
     public List<Student> ListOfStundentInTheirFinalYear();
 }

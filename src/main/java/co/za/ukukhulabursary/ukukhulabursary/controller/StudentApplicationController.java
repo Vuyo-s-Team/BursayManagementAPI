@@ -50,16 +50,18 @@ public class StudentApplicationController {
         try {
             Optional<StudentApplication> optionalExistingStudentApplication = studentApplicationService.getStudentApplicationById(id);
             if (optionalExistingStudentApplication.isPresent()) {
+
                 StudentApplication existingStudentApplication = optionalExistingStudentApplication.get();
                 existingStudentApplication.setYearOfStudies(updatedStudentApplication.getYearOfStudies() != 0 ? updatedStudentApplication.getYearOfStudies() : existingStudentApplication.getYearOfStudies());
                 existingStudentApplication.setAverageGrade(updatedStudentApplication.getAverageGrade() != 0.0 ? updatedStudentApplication.getAverageGrade() : existingStudentApplication.getAverageGrade());
                 existingStudentApplication.setAmount(updatedStudentApplication.getAmount() != 0.0 ? updatedStudentApplication.getAmount() : existingStudentApplication.getAmount());
                 existingStudentApplication.setDateOfApplication(updatedStudentApplication.getDateOfApplication() != null ? updatedStudentApplication.getDateOfApplication() : existingStudentApplication.getDateOfApplication());
                 existingStudentApplication.setComment(updatedStudentApplication.getComment() != null ? updatedStudentApplication.getComment() : existingStudentApplication.getComment());
-                existingStudentApplication.setStudentID(updatedStudentApplication.getStudentID() != 0 ? updatedStudentApplication.getStudentID() : existingStudentApplication.getStudentID());
-                existingStudentApplication.setProgramID(updatedStudentApplication.getProgramID() != 0 ? updatedStudentApplication.getProgramID() : existingStudentApplication.getProgramID());
-                existingStudentApplication.setStatusID(updatedStudentApplication.getStatusID() != 0 ? updatedStudentApplication.getStatusID() : existingStudentApplication.getStatusID());
+                existingStudentApplication.setStudentID(updatedStudentApplication.getStudent() != null ? updatedStudentApplication.getStudent() : existingStudentApplication.getStudent());
+                existingStudentApplication.setProgramID(updatedStudentApplication.getProgram() != null ? updatedStudentApplication.getProgram() : existingStudentApplication.getProgram());
+                existingStudentApplication.setStatusID(updatedStudentApplication.getStatus() != null ? updatedStudentApplication.getStatus() : existingStudentApplication.getStatus());
                 
+
                 StudentApplication updated = studentApplicationService.updateStudentApplication(existingStudentApplication);
                     return ResponseEntity.ok(updated);
             } else {
