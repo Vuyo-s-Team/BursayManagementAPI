@@ -1,7 +1,5 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,24 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import co.za.ukukhulabursary.ukukhulabursary.link.StudentApplicationAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
 import co.za.ukukhulabursary.ukukhulabursary.service.implementation.StudentApplicationService;
-
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("api/v1/studentApplication")
 public class StudentApplicationController {
 
     private final StudentApplicationService studentApplicationService;
    private final StudentApplicationAssembler studentApplicationAssembler;
-
-    @Autowired
-    public StudentApplicationController(StudentApplicationService StudentApplicationService, StudentApplicationAssembler studentApplicationAssembler) {
-        this.studentApplicationService = StudentApplicationService;
-        this.studentApplicationAssembler = studentApplicationAssembler;
-    }
 
     @GetMapping("")
     public ResponseEntity<List<EntityModel<StudentApplication>>> getAllStudentApplications() {
@@ -76,6 +69,12 @@ public class StudentApplicationController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/{id}/status")
+    public ResponseEntity<String> getApplicationStatusById(@PathVariable Long id) {
+        String status = studentApplicationService.getApplicationStatusById(id);
+        return ResponseEntity.ok(status);
     }
 
 }

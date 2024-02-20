@@ -1,7 +1,5 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,24 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import co.za.ukukhulabursary.ukukhulabursary.link.DocumentAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
 import co.za.ukukhulabursary.ukukhulabursary.service.implementation.DocumentService;
-
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("api/v1/document")
 public class DocumentController {
 
     private final DocumentService documentService;
    private final DocumentAssembler documentAssembler;
-
-    @Autowired
-    public DocumentController(DocumentService documentService, DocumentAssembler documentAssembler) {
-        this.documentService = documentService;
-        this.documentAssembler = documentAssembler;
-    }
 
     @GetMapping("")
     public ResponseEntity<List<EntityModel<Document>>> getAllDocuments() {
@@ -59,9 +52,9 @@ public class DocumentController {
 
             if (optionalExistingDocument.isPresent()) {
                 Document existingDocument = optionalExistingDocument.get();
-                existingDocument.setTranscript(updatedDocument.getTranscript());
-                existingDocument.setIdentityDocument(updatedDocument.getIdentityDocument());
-                existingDocument.setApplicationID(updatedDocument.getApplicationID());
+                existingDocument.setTranscript(updatedDocument.getTranscript() != null ? updatedDocument.getTranscript() : existingDocument.getTranscript());
+                existingDocument.setIdentityDocument(updatedDocument.getIdentityDocument() != null ? updatedDocument.getIdentityDocument() : existingDocument.getIdentityDocument());
+                existingDocument.setApplicationID(updatedDocument.getApplicationID() != null ? updatedDocument.getApplicationID() : existingDocument.getApplicationID());
                 Document updated = documentService.updateDocument(existingDocument);
                 return ResponseEntity.ok(updated);
             } else {

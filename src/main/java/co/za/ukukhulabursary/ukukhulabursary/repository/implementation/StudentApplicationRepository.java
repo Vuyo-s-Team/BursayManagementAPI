@@ -3,6 +3,7 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -85,4 +86,18 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
             return Optional.empty();
         }
     }
+
+     @Override
+     public String getApplicationStatusById(long applicationId) {
+        String sql = "SELECT s.Type " +
+                     "FROM Status s " +
+                     "INNER JOIN StudentApplication sa ON sa.StatusID = s.StatusID " +
+                     "WHERE sa.ApplicationID = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, String.class, applicationId);
+        } catch (EmptyResultDataAccessException e) {
+            return "Status not found";
+        }
+    }
+    
 }
