@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.StudentApplicationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStudentApplicationRepository;
 
 @Repository
 public class StudentApplicationRepository implements IRepository<StudentApplication> {

@@ -2,7 +2,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.model.Student;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStudentRepository;
 
 import java.util.List;
 import java.util.Optional;

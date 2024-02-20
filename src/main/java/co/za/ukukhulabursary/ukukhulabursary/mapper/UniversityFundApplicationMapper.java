@@ -3,7 +3,6 @@ package co.za.ukukhulabursary.ukukhulabursary.mapper;
 import co.za.ukukhulabursary.ukukhulabursary.exception.StatusNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityFundApplication;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStatusRepository;
 import lombok.Data;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

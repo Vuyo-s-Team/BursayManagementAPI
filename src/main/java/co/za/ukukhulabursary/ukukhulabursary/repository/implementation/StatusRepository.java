@@ -3,7 +3,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.StatusMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStatusRepository;
 import lombok.Data;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

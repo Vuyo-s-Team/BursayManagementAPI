@@ -1,12 +1,9 @@
 package co.za.ukukhulabursary.ukukhulabursary.mapper;
 
 import co.za.ukukhulabursary.ukukhulabursary.exception.ProvinceNotFoundException;
-import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityFundApplicationNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.Province;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityFundApplication;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IProvinceRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityFundApplicationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

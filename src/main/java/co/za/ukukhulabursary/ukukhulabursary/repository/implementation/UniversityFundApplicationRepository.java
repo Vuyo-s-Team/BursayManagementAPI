@@ -4,12 +4,10 @@ import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityFundApplication
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityFundApplicationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityFundApplication;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityFundApplicationRepository;
 import lombok.Data;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 

@@ -2,7 +2,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.DocumentMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IDocumentRepository;
 
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;

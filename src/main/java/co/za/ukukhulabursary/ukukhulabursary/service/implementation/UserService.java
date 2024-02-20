@@ -3,7 +3,6 @@ package co.za.ukukhulabursary.ukukhulabursary.service.implementation;
 import co.za.ukukhulabursary.ukukhulabursary.exception.ContactNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.ContactDetails;
 import co.za.ukukhulabursary.ukukhulabursary.model.User;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUserRepository;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

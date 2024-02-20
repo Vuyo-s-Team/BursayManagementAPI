@@ -4,7 +4,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.RaceMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Race;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IRaceRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;

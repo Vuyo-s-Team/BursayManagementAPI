@@ -2,9 +2,7 @@ package co.za.ukukhulabursary.ukukhulabursary.mapper;
 
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityRepository;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

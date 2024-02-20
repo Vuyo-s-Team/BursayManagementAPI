@@ -2,7 +2,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.GenderMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Gender;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IGenderRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;

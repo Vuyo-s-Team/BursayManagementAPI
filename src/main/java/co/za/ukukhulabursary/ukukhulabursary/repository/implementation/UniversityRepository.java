@@ -4,7 +4,6 @@ import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityAndApplicationDTO;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

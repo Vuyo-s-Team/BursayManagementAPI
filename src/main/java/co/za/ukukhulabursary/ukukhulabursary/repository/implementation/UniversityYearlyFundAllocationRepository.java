@@ -4,7 +4,6 @@ import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationD
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityYearlyFundAllocationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityYearlyFundAllocationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

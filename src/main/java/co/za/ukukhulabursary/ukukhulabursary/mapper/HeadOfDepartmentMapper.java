@@ -1,8 +1,6 @@
 package co.za.ukukhulabursary.ukukhulabursary.mapper;
 
 import co.za.ukukhulabursary.ukukhulabursary.model.*;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityRepository;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
