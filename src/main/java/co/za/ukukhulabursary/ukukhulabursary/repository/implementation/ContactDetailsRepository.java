@@ -3,6 +3,7 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.ContactDetailsMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.ContactDetails;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IContactDetailsRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class ContactDetailsRepository implements IContactDetailsRepository {
+public class ContactDetailsRepository implements IRepository<ContactDetails> {
 
     private JdbcTemplate jdbcTemplate;
     private ContactDetailsMapper mapper;
