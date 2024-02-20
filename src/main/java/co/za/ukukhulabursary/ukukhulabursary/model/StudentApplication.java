@@ -6,15 +6,16 @@ import lombok.Data;
 
 @Data
 public class StudentApplication {
-    
+
     private long applicationID ;
     private int yearOfStudies;
     private double averageGrade;
     private double amount;
     private LocalDate dateOfApplication;
     private String comment;
-    private int studentID;
-    private int programID;
-    private String statusID;
+    private Student student;
+    private Program program;
+    private Status status;
+
 
 }

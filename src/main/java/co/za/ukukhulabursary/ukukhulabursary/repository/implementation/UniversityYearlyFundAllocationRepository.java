@@ -1,6 +1,8 @@
 package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityMoneySpentDTO;
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
+import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityMoneySpentMapper;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityYearlyFundAllocationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityYearlyFundAllocationRepository;
@@ -15,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UniversityYearlyFundAllocationRepository implements IUniversityYearlyFundAllocationRepository {
     private final UniversityYearlyFundAllocationMapper universityYearlyFundAllocationMapper;
+    private final UniversityMoneySpentMapper universityMoneySpentDTO;
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -50,6 +53,17 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
     }
 
     @Override
+    public List<UniversityMoneySpentDTO> findUniverityAndTheMoneyTheirSpent(int year) {
+        String sql ="SELECT DISTINCT U.Name, UFA.Budget - UFA.RemainingBudget AS [Money Spent]\n" +
+                "FROM University U\n" +
+                "LEFT JOIN UniversityYearlyFundAllocation UFA ON U.UniversityID = UFA.UniversityID\n" +
+                "LEFT JOIN BBDYearlyFund BYF ON UFA.YearlyFundID = BYF.YearlyFundID\n" +
+                "WHERE YEAR(BYF.FinancialYearStart) = ?";
+
+        return jdbcTemplate.query(sql, universityMoneySpentDTO, year);
+    }
+
+    @Override
     public void save(
             UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO) {
         String sql = "INSERT INTO [dbo].[UniversityYearlyFundAllocation]" +
@@ -63,4 +77,6 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
         };
         jdbcTemplate.update(sql, args);
     }
+
+
 }
