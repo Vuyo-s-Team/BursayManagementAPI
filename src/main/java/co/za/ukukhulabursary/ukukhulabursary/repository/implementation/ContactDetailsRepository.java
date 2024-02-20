@@ -2,7 +2,6 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.ContactDetailsMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.ContactDetails;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IContactDetailsRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
