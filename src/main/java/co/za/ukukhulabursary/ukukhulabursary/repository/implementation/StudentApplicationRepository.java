@@ -3,16 +3,18 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 import java.util.List;
 import java.util.Optional;
 
+
+import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.StudentApplicationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStudentApplicationRepository;
 
 @Repository
-public class StudentApplicationRepository implements IStudentApplicationRepository {
+public class StudentApplicationRepository implements IRepository<StudentApplication> {
 
     private final JdbcTemplate jdbcTemplate;
     private final StudentApplicationMapper mapper;
@@ -22,13 +24,13 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
         this.mapper = mapper;
     }
 
-    @Override
+
     public List<StudentApplication>getAllStudentApplications() {
         String sql = "SELECT * FROM [dbo].[StudentApplication]";
         return jdbcTemplate.query(sql, mapper);
     }
 
-    @Override
+
     public Optional<StudentApplication> getStudentApplicationById(long applicationID) {
         String sql = "SELECT * FROM [dbo].[StudentApplication] WHERE [ApplicationID] = ?";
         List<StudentApplication> applications = jdbcTemplate.query(sql, mapper, applicationID);
@@ -38,7 +40,7 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
         return Optional.empty();
     }
 
-    @Override
+
     public StudentApplication saveStudentApplication(StudentApplication studentApplication) {
         String sql = "INSERT INTO [dbo].[StudentApplication] (YearOfStudies, AverageGrade, Amount, DateOfApplication, Comment, StudentID, ProgramID, StatusID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -55,7 +57,7 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
         return studentApplication;
     }
 
-    @Override
+
     public Optional<StudentApplication> updateStudentApplication(long applicationID, StudentApplication updatedApplication) {
         String sql = "UPDATE [dbo].[StudentApplication] SET " +
                  "YearOfStudies = ?, " +
@@ -87,7 +89,16 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
         }
     }
 
-     @Override
+    @Override
+    public List<StudentApplication> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<StudentApplication> findById(long id) {
+        return Optional.empty();
+    }
+
      public String getApplicationStatusById(long applicationId) {
         String sql = "SELECT s.Type " +
                      "FROM Status s " +
@@ -99,5 +110,5 @@ public class StudentApplicationRepository implements IStudentApplicationReposito
             return "Status not found";
         }
     }
-    
+
 }

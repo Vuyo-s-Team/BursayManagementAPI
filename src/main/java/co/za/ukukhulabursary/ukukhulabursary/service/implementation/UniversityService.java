@@ -7,6 +7,10 @@ import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityFundApplication
 import co.za.ukukhulabursary.ukukhulabursary.exception.UniversityNotFoundException;
 import co.za.ukukhulabursary.ukukhulabursary.model.*;
 import co.za.ukukhulabursary.ukukhulabursary.repository.*;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.ProvinceRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UniversityFundApplicationRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UniversityRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UniversityYearlyFundAllocationRepository;
 import co.za.ukukhulabursary.ukukhulabursary.service.IUniversityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,11 +21,12 @@ import java.util.List;
 @AllArgsConstructor
 public class UniversityService implements IUniversityService {
 
-    private final IProvinceRepository provinceRepository;
-    private final IUniversityRepository universityRepository;
-    private final IStatusRepository statusRepository;
-    private final IUniversityYearlyFundAllocationRepository universityYearlyFundAllocationRepository;
-    private final IUniversityFundApplicationRepository universityFundApplicationRepository;
+    private final ProvinceRepository provinceRepository;
+    private final UniversityRepository universityRepository;
+    private final IRepository<Status> statusRepository;
+    private final UniversityYearlyFundAllocationRepository universityYearlyFundAllocationRepository;
+    private final UniversityFundApplicationRepository universityFundApplicationRepository;
+
 
     @Override
     public List<Province> retrieveAllUniversityProvinces() {

@@ -5,9 +5,9 @@ import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import java.util.List;
 import java.util.Optional;
 
-public interface IStatusRepository {
+public interface IRepository<T> {
+    public List<T> findAll();
 
-    public List<Status> findAll();
+    public Optional<T> findById(long id);
 
-    public Optional<Status> findById(long id);
 }

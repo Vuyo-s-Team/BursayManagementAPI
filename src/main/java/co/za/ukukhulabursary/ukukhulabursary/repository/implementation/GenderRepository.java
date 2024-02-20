@@ -2,7 +2,7 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.GenderMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Gender;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IGenderRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 @AllArgsConstructor
-public class GenderRepository implements IGenderRepository {
+public class GenderRepository implements IRepository<Gender> {
     private final JdbcTemplate jdbcTemplate;
     private final GenderMapper mapper;
     @Override

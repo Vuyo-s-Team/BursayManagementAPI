@@ -2,8 +2,8 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.DocumentMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Document;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IDocumentRepository;
 
+import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,18 +14,18 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class DocumentRepository implements  IDocumentRepository {
+public class DocumentRepository implements IRepository<Document> {
 
     private final JdbcTemplate jdbcTemplate;
     private final DocumentMapper mapper;
 
-    @Override
+
     public List<Document> getAllDocuments() {
         String sql = "SELECT * FROM [dbo].[Document]";
         return jdbcTemplate.query(sql, mapper);
     }
 
-    @Override
+
     public Optional<Document> getDocumentById(long DocumentID) {
         String sql = "SELECT * FROM [dbo].[Document] WHERE [DocumentID] = ?";
         List<Document> Document = jdbcTemplate.query(sql, mapper,DocumentID);
@@ -34,14 +34,14 @@ public class DocumentRepository implements  IDocumentRepository {
         return Optional.empty();
     }
 
-    @Override
+
     public Document saveDocument(Document document) {
         String sql = "INSERT INTO [dbo].[Document] (Transcript, IdentityDocument, ApplicationID) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, document.getTranscript(), document.getIdentityDocument(), document.getApplicationID());
         return document;
     }
 
-    @Override
+
     public Optional<Document> updateDocument(long documentID, Document updatedDocument) {
         String sql = "UPDATE [dbo].[Document] SET Transcript = ?, IdentityDocument = ?, ApplicationID = ? WHERE DocumentID = ?";
         
@@ -59,4 +59,13 @@ public class DocumentRepository implements  IDocumentRepository {
     }
 
 
+    @Override
+    public List<Document> findAll() {
+        return null;
+    }
+
+    @Override
+    public Optional<Document> findById(long id) {
+        return Optional.empty();
+    }
 }

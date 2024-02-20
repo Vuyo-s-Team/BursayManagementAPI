@@ -2,7 +2,7 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UserMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.User;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IUserRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class UserRepository  implements IUserRepository {
+public class UserRepository  implements IRepository<User> {
     private final JdbcTemplate jdbcTemplate;
     private final UserMapper userMapper;
     @Override
