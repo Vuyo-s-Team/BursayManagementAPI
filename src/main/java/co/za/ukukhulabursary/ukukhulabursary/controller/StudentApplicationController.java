@@ -1,30 +1,26 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import co.za.ukukhulabursary.ukukhulabursary.link.StudentApplicationAssembler;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
 import co.za.ukukhulabursary.ukukhulabursary.service.implementation.StudentApplicationService;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Optional;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("api/v1/studentApplication")
 public class StudentApplicationController {
 
     private final StudentApplicationService studentApplicationService;
    private final StudentApplicationAssembler studentApplicationAssembler;
-
-    @Autowired
-    public StudentApplicationController(StudentApplicationService StudentApplicationService, StudentApplicationAssembler studentApplicationAssembler) {
-        this.studentApplicationService = StudentApplicationService;
-        this.studentApplicationAssembler = studentApplicationAssembler;
-    }
 
     @GetMapping("")
     public ResponseEntity<List<EntityModel<StudentApplication>>> getAllStudentApplications() {
@@ -53,19 +49,21 @@ public class StudentApplicationController {
     public ResponseEntity<StudentApplication> updateStudentApplication(@PathVariable int id, @RequestBody StudentApplication updatedStudentApplication) {
         try {
             Optional<StudentApplication> optionalExistingStudentApplication = studentApplicationService.getStudentApplicationById(id);
-
             if (optionalExistingStudentApplication.isPresent()) {
-            StudentApplication existingStudentApplication = optionalExistingStudentApplication.get();
-                existingStudentApplication.setYearOfStudies(updatedStudentApplication.getYearOfStudies());
-                existingStudentApplication.setAverageGrade(updatedStudentApplication.getAverageGrade());
-                existingStudentApplication.setAmount(updatedStudentApplication.getAmount());
-                existingStudentApplication.setDateOfApplication(updatedStudentApplication.getDateOfApplication());
-                existingStudentApplication.setComment(updatedStudentApplication.getComment());
-                existingStudentApplication.setStudent(updatedStudentApplication.getStudent());
-                existingStudentApplication.setProgram(updatedStudentApplication.getProgram());
-                existingStudentApplication.setStatus(updatedStudentApplication.getStatus());
+
+                StudentApplication existingStudentApplication = optionalExistingStudentApplication.get();
+                existingStudentApplication.setYearOfStudies(updatedStudentApplication.getYearOfStudies() != 0 ? updatedStudentApplication.getYearOfStudies() : existingStudentApplication.getYearOfStudies());
+                existingStudentApplication.setAverageGrade(updatedStudentApplication.getAverageGrade() != 0.0 ? updatedStudentApplication.getAverageGrade() : existingStudentApplication.getAverageGrade());
+                existingStudentApplication.setAmount(updatedStudentApplication.getAmount() != 0.0 ? updatedStudentApplication.getAmount() : existingStudentApplication.getAmount());
+                existingStudentApplication.setDateOfApplication(updatedStudentApplication.getDateOfApplication() != null ? updatedStudentApplication.getDateOfApplication() : existingStudentApplication.getDateOfApplication());
+                existingStudentApplication.setComment(updatedStudentApplication.getComment() != null ? updatedStudentApplication.getComment() : existingStudentApplication.getComment());
+                existingStudentApplication.setStudentID(updatedStudentApplication.getStudent() != null ? updatedStudentApplication.getStudent() : existingStudentApplication.getStudent());
+                existingStudentApplication.setProgramID(updatedStudentApplication.getProgram() != null ? updatedStudentApplication.getProgram() : existingStudentApplication.getProgram());
+                existingStudentApplication.setStatusID(updatedStudentApplication.getStatus() != null ? updatedStudentApplication.getStatus() : existingStudentApplication.getStatus());
+                
+
                 StudentApplication updated = studentApplicationService.updateStudentApplication(existingStudentApplication);
-                return ResponseEntity.ok(updated);
+                    return ResponseEntity.ok(updated);
             } else {
                 return ResponseEntity.notFound().build();
             }
@@ -73,6 +71,12 @@ public class StudentApplicationController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/{id}/status")
+    public ResponseEntity<String> getApplicationStatusById(@PathVariable Long id) {
+        String status = studentApplicationService.getApplicationStatusById(id);
+        return ResponseEntity.ok(status);
     }
 
 }

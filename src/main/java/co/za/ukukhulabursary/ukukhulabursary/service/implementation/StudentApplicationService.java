@@ -7,17 +7,13 @@ import co.za.ukukhulabursary.ukukhulabursary.exception.StudentApplicationNotFoun
 import co.za.ukukhulabursary.ukukhulabursary.exception.UpdateStudentApplicationFailedException;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
 import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.StudentApplicationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class StudentApplicationService {
     private final StudentApplicationRepository studentApplicationRepository;
-
-    @Autowired
-    public StudentApplicationService(StudentApplicationRepository StudentApplicationRepository) {
-        studentApplicationRepository = StudentApplicationRepository;
-    }
 
     public List<StudentApplication> getAllStudentApplications() {
         return studentApplicationRepository.getAllStudentApplications();
@@ -48,7 +44,11 @@ public class StudentApplicationService {
 
         return  studentApplicationRepository.updateStudentApplication(ApplicationID, existingStudentApplication)
             .orElseThrow(() -> new UpdateStudentApplicationFailedException("Failed to update StudentApplication with ID " + ApplicationID));
-        
-    }
+
+        }
+
+    public String getApplicationStatusById(long applicationId) {
+            return studentApplicationRepository.getApplicationStatusById(applicationId);
+        }
 }
 

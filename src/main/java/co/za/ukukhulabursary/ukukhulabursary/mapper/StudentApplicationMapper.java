@@ -31,6 +31,7 @@ public class StudentApplicationMapper implements RowMapper<StudentApplication> {
         studentApplication.setAmount(rs.getDouble("Amount"));
         studentApplication.setDateOfApplication(rs.getDate("DateOfApplication").toLocalDate());
         studentApplication.setComment(rs.getString("Comment"));
+
         long studentID = rs.getLong("StudentID");
         Student student = studentRepository.findById(studentID)
                 .orElseThrow(()-> new StudentApplicationNotFoundException(String.valueOf(studentID)));

@@ -6,11 +6,13 @@ import java.util.Optional;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
 
 public interface IStudentApplicationRepository {
-     List<StudentApplication> getAllStudentApplications();
+    List<StudentApplication> getAllStudentApplications();
 
     Optional<StudentApplication> getStudentApplicationById(long ApplicationID);
     
     StudentApplication saveStudentApplication(StudentApplication document);
 
     Optional<StudentApplication> updateStudentApplication(long ApplicationID, StudentApplication updatedApplication);
+
+    String getApplicationStatusById(long applicationId);
 }

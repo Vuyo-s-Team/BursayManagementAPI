@@ -17,5 +17,4 @@ public class StudentApplication {
     private Program program;
     private Status status;
 
-
 }
