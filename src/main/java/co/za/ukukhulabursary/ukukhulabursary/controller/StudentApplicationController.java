@@ -57,9 +57,9 @@ public class StudentApplicationController {
                 existingStudentApplication.setAmount(updatedStudentApplication.getAmount() != 0.0 ? updatedStudentApplication.getAmount() : existingStudentApplication.getAmount());
                 existingStudentApplication.setDateOfApplication(updatedStudentApplication.getDateOfApplication() != null ? updatedStudentApplication.getDateOfApplication() : existingStudentApplication.getDateOfApplication());
                 existingStudentApplication.setComment(updatedStudentApplication.getComment() != null ? updatedStudentApplication.getComment() : existingStudentApplication.getComment());
-                existingStudentApplication.setStudentID(updatedStudentApplication.getStudent() != null ? updatedStudentApplication.getStudent() : existingStudentApplication.getStudent());
-                existingStudentApplication.setProgramID(updatedStudentApplication.getProgram() != null ? updatedStudentApplication.getProgram() : existingStudentApplication.getProgram());
-                existingStudentApplication.setStatusID(updatedStudentApplication.getStatus() != null ? updatedStudentApplication.getStatus() : existingStudentApplication.getStatus());
+                existingStudentApplication.setStudent(updatedStudentApplication.getStudent() != null ? updatedStudentApplication.getStudent() : existingStudentApplication.getStudent());
+                existingStudentApplication.setProgram(updatedStudentApplication.getProgram() != null ? updatedStudentApplication.getProgram() : existingStudentApplication.getProgram());
+                existingStudentApplication.setStatus(updatedStudentApplication.getStatus() != null ? updatedStudentApplication.getStatus() : existingStudentApplication.getStatus());
                 
 
                 StudentApplication updated = studentApplicationService.updateStudentApplication(existingStudentApplication);

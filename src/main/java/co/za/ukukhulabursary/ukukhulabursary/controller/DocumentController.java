@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/document")
+@RequestMapping("api/v1/document/doc")
 public class DocumentController {
 
     private final DocumentService documentService;
@@ -37,7 +37,7 @@ public class DocumentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/doc/{id}")
     public ResponseEntity<Document> getDocumentById(@PathVariable Long id) {
         Optional<Document> optionalDocument = documentService.getDocumentById(id);
         return optionalDocument
@@ -45,7 +45,7 @@ public class DocumentController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/doc/{id}")
     public ResponseEntity<Document> updateDocument(@PathVariable int id, @RequestBody Document updatedDocument) {
         try {
             Optional<Document> optionalExistingDocument = documentService.getDocumentById(id);

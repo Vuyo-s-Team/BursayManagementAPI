@@ -66,7 +66,7 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
 
     @Override
     public Optional<UniversityMoneySpentDTO> UniverityChecksHowMuchTheirSpentEachYear(int year, int universityID) {
-        String sql ="SELECT U.Name, SUM(UFA.Budget - UFA.RemainingBudget) AS [Total Money Spent]\n" +
+        String sql ="SELECT U.Name, SUM(UFA.Budget - UFA.RemainingBudget) AS [Money Spent]\n" +
                 "FROM University U\n" +
                 "LEFT JOIN UniversityYearlyFundAllocation UFA ON U.UniversityID = UFA.UniversityID\n" +
                 "LEFT JOIN BBDYearlyFund BYF ON UFA.YearlyFundID = BYF.YearlyFundID\n" +
