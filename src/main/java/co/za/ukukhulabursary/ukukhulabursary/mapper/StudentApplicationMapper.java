@@ -6,7 +6,9 @@ import co.za.ukukhulabursary.ukukhulabursary.model.Program;
 import co.za.ukukhulabursary.ukukhulabursary.model.Status;
 import co.za.ukukhulabursary.ukukhulabursary.model.Student;
 import co.za.ukukhulabursary.ukukhulabursary.model.StudentApplication;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IStatusRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.ProgramRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.StatusRepository;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -17,9 +19,9 @@ import java.sql.SQLException;
 @Component
 @AllArgsConstructor
 public class StudentApplicationMapper implements RowMapper<StudentApplication> {
-    private final IStudentRepository studentRepository;
-    private final IStatusRepository statusRepository;
-    private final IProgramRepository programRepository;
+    private final StudentRepository studentRepository;
+    private final StatusRepository statusRepository;
+    private final ProgramRepository programRepository;
     @Override
     public StudentApplication mapRow(ResultSet rs, int rowNum) throws SQLException {
         StudentApplication studentApplication = new StudentApplication();

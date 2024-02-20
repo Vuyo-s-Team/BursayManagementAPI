@@ -2,6 +2,7 @@ package co.za.ukukhulabursary.ukukhulabursary.mapper;
 
 import co.za.ukukhulabursary.ukukhulabursary.model.University;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UniversityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UniversityYearlyFundAllocationMapper implements RowMapper<UniversityYearlyFundAllocation> {
 
-    private final IUniversityRepository universityRepository;
+    private final UniversityRepository universityRepository;
 
     @Override
     public UniversityYearlyFundAllocation mapRow(ResultSet rs, int rowNum) throws SQLException {
