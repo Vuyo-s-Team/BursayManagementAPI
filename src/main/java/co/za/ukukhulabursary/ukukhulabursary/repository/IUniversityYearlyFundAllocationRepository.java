@@ -14,6 +14,7 @@ public interface IUniversityYearlyFundAllocationRepository {
 
     public List<UniversityYearlyFundAllocation> findUniversityFundingForYear(int year, long universityId);
     public List<UniversityMoneySpentDTO>findUniverityAndTheMoneyTheirSpent(int year);
+    public Optional<UniversityMoneySpentDTO> UniverityChecksHowMuchTheirSpentEachYear(int year,int universityID);
 
     public void save(UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO);
 }

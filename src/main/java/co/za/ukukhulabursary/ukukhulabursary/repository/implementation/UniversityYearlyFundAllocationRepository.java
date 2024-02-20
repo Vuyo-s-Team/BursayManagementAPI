@@ -5,6 +5,7 @@ import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationD
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityMoneySpentMapper;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityYearlyFundAllocationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
+import co.za.ukukhulabursary.ukukhulabursary.model.User;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IUniversityYearlyFundAllocationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -61,6 +62,24 @@ public class UniversityYearlyFundAllocationRepository implements IUniversityYear
                 "WHERE YEAR(BYF.FinancialYearStart) = ?";
 
         return jdbcTemplate.query(sql, universityMoneySpentDTO, year);
+    }
+
+    @Override
+    public Optional<UniversityMoneySpentDTO> UniverityChecksHowMuchTheirSpentEachYear(int year, int universityID) {
+        String sql ="SELECT U.Name, SUM(UFA.Budget - UFA.RemainingBudget) AS [Total Money Spent]\n" +
+                "FROM University U\n" +
+                "LEFT JOIN UniversityYearlyFundAllocation UFA ON U.UniversityID = UFA.UniversityID\n" +
+                "LEFT JOIN BBDYearlyFund BYF ON UFA.YearlyFundID = BYF.YearlyFundID\n" +
+                "WHERE YEAR(BYF.FinancialYearStart) = ? AND U.UniversityID = ?\n" +
+                "GROUP BY U.Name;";
+
+        List<UniversityMoneySpentDTO> university = jdbcTemplate.query(sql, universityMoneySpentDTO, year,universityID);
+
+        if (!university.isEmpty()){
+            return  Optional.of(university.getFirst());
+        }
+
+        return Optional.empty();
     }
 
     @Override

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -24,12 +25,12 @@ public class AdminController {
        return adminService.SerchAllUniversitiesFundingByYear(year);
     }
     @GetMapping("/university/money/{year}")
-    public  List<UniversityMoneySpentDTO> SearchUninversityMoneySpentByYear(@PathVariable int year){
+    public  List<UniversityMoneySpentDTO> SearchListUninversityMoneySpentByYear(@PathVariable int year){
         return adminService.SearchUniversityMoneySpentByYear(year);
     }
-    @GetMapping("/funded/students")
-    public  void ViewAllFinalYearStudents(){
-
+    @GetMapping("/university/money/{id}/{year}")
+    public Optional<UniversityMoneySpentDTO> SearchUninversityMoneySpentByYear(@PathVariable int id, @PathVariable int year){
+        return adminService.UniverityChecksHowMuchTheirSpentEachYear(year, id);
     }
 
 

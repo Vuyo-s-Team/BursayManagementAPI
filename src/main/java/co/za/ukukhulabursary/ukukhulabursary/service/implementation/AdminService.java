@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +20,9 @@ public class AdminService {
      }
      public  List<UniversityMoneySpentDTO>SearchUniversityMoneySpentByYear(int year){
          return universityYearlyFundAllocationRepository.findUniverityAndTheMoneyTheirSpent( year);
+     }
+     public Optional<UniversityMoneySpentDTO> UniverityChecksHowMuchTheirSpentEachYear(int year, int universityID){
+         return universityYearlyFundAllocationRepository.UniverityChecksHowMuchTheirSpentEachYear(year,universityID);
      }
 
 }
