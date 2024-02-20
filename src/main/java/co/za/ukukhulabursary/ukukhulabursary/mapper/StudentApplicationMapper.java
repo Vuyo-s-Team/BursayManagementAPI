@@ -38,7 +38,7 @@ public class StudentApplicationMapper implements RowMapper<StudentApplication> {
         long programID= rs.getLong("ProgramID");
           Program program = programRepository.findById(programID)
                   .orElseThrow(()-> new StudentApplicationNotFoundException(String.valueOf(studentID)));
-        studentApplication.setProgramID(program);
+        studentApplication.setProgram(program);
         long statusId =rs.getLong("StatusID");
         Status status = statusRepository.findById(statusId)
                 .orElseThrow(() -> new StatusNotFoundException(statusId));

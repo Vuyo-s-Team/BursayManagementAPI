@@ -17,20 +17,7 @@ import java.util.List;
 public class AdminController {
 
     private  final  AdminService adminService;
-    @GetMapping("/funded/students")
-    public  void SeeAllFundedStudents(){
 
-    }
-
-    @PutMapping ("/application/universities")
-    public void  UpdateUniversityApplication(){
-
-    }
-
-    @PutMapping ("/application/students")
-    public void  UpdateStudentApplication(){
-
-    }
 
     @GetMapping("/university/funds/{year}")
     public  List<UniversityYearlyFundAllocation> GettheUninversityFundsByYear(@PathVariable int year){
@@ -40,7 +27,7 @@ public class AdminController {
     public  List<UniversityMoneySpentDTO> SearchUninversityMoneySpentByYear(@PathVariable int year){
         return adminService.SearchUniversityMoneySpentByYear(year);
     }
-    @GetMapping("/funded/studentz")
+    @GetMapping("/funded/students")
     public  void ViewAllFinalYearStudents(){
 
     }

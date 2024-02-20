@@ -42,9 +42,9 @@ public class StudentApplicationService {
         existingStudentApplication.setAverageGrade(updatedStudentApplication.getAverageGrade());
         existingStudentApplication.setAmount(updatedStudentApplication.getAmount());
         existingStudentApplication.setComment(updatedStudentApplication.getComment());
-        existingStudentApplication.setStudentID(updatedStudentApplication.getStudentID());
-        existingStudentApplication.setProgramID(updatedStudentApplication.getProgramID());
-        existingStudentApplication.setStatusID(updatedStudentApplication.getStatusID());
+        existingStudentApplication.setStudent(updatedStudentApplication.getStudent());
+        existingStudentApplication.setProgram(updatedStudentApplication.getProgram());
+        existingStudentApplication.setStatus(updatedStudentApplication.getStatus());
 
         return  studentApplicationRepository.updateStudentApplication(ApplicationID, existingStudentApplication)
             .orElseThrow(() -> new UpdateStudentApplicationFailedException("Failed to update StudentApplication with ID " + ApplicationID));

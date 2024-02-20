@@ -61,9 +61,9 @@ public class StudentApplicationController {
                 existingStudentApplication.setAmount(updatedStudentApplication.getAmount());
                 existingStudentApplication.setDateOfApplication(updatedStudentApplication.getDateOfApplication());
                 existingStudentApplication.setComment(updatedStudentApplication.getComment());
-                existingStudentApplication.setStudentID(updatedStudentApplication.getStudentID());
-                existingStudentApplication.setProgramID(updatedStudentApplication.getProgramID());
-                existingStudentApplication.setStatusID(updatedStudentApplication.getStatusID());
+                existingStudentApplication.setStudent(updatedStudentApplication.getStudent());
+                existingStudentApplication.setProgram(updatedStudentApplication.getProgram());
+                existingStudentApplication.setStatus(updatedStudentApplication.getStatus());
                 StudentApplication updated = studentApplicationService.updateStudentApplication(existingStudentApplication);
                 return ResponseEntity.ok(updated);
             } else {

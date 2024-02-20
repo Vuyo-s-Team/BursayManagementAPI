@@ -14,7 +14,7 @@ public class StudentApplication {
     private LocalDate dateOfApplication;
     private String comment;
     private Student student;
-    private Program programID;
+    private Program program;
     private Status status;
 
 
