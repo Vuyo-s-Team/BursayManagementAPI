@@ -1,9 +1,7 @@
 package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
 import co.za.ukukhulabursary.ukukhulabursary.mapper.DepartmentMapper;
-import co.za.ukukhulabursary.ukukhulabursary.mapper.ProvinceMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.Department;
-import co.za.ukukhulabursary.ukukhulabursary.repository.IDepartmentRepository;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
