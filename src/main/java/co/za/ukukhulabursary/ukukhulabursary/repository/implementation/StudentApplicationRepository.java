@@ -3,7 +3,10 @@ package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 import java.util.List;
 import java.util.Optional;
 
+
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
+
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -47,9 +50,9 @@ public class StudentApplicationRepository implements IRepository<StudentApplicat
             studentApplication.getAmount(), 
             studentApplication.getDateOfApplication(), 
             studentApplication.getComment(), 
-            studentApplication.getStudentID(), 
-            studentApplication.getProgramID(), 
-            studentApplication.getStatusID()
+            studentApplication.getStudent(),
+            studentApplication.getProgram(),
+            studentApplication.getStatus()
         );
         return studentApplication;
     }
@@ -73,9 +76,9 @@ public class StudentApplicationRepository implements IRepository<StudentApplicat
             updatedApplication.getAmount(), 
             updatedApplication.getDateOfApplication(), 
             updatedApplication.getComment(), 
-            updatedApplication.getStudentID(), 
-            updatedApplication.getProgramID(), 
-            updatedApplication.getStatusID(), 
+            updatedApplication.getStudent(),
+            updatedApplication.getProgram(),
+            updatedApplication.getStatus(),
             applicationID
         );
     
@@ -95,4 +98,17 @@ public class StudentApplicationRepository implements IRepository<StudentApplicat
     public Optional<StudentApplication> findById(long id) {
         return Optional.empty();
     }
+
+     public String getApplicationStatusById(long applicationId) {
+        String sql = "SELECT s.Type " +
+                     "FROM Status s " +
+                     "INNER JOIN StudentApplication sa ON sa.StatusID = s.StatusID " +
+                     "WHERE sa.ApplicationID = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, String.class, applicationId);
+        } catch (EmptyResultDataAccessException e) {
+            return "Status not found";
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package co.za.ukukhulabursary.ukukhulabursary.controller;
 
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityMoneySpentDTO;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.model.User;
 import co.za.ukukhulabursary.ukukhulabursary.repository.implementation.UserRepository;
@@ -9,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -16,28 +18,19 @@ import java.util.List;
 public class AdminController {
 
     private  final  AdminService adminService;
-    @GetMapping("/funded/students")
-    public  void SeeAllFundedStudents(){
 
-    }
 
-    @PutMapping ("/application/universities")
-    public void  UpdateUniversityApplication(){
-
-    }
-
-    @PutMapping ("/application/students")
-    public void  UpdateStudentApplication(){
-
-    }
-
-    @GetMapping("/university/funds/year/{year}")
-    public  List<UniversityYearlyFundAllocation> AllocateUninversityFunds(@PathVariable int year){
+    @GetMapping("/university/funds/{year}")
+    public  List<UniversityYearlyFundAllocation> GettheUninversityFundsByYear(@PathVariable int year){
        return adminService.SerchAllUniversitiesFundingByYear(year);
     }
-    @GetMapping("/funded/studentz")
-    public  void ViewAllFinalYearStudents(){
-
+    @GetMapping("/university/money/{year}")
+    public  List<UniversityMoneySpentDTO> SearchListUninversityMoneySpentByYear(@PathVariable int year){
+        return adminService.SearchUniversityMoneySpentByYear(year);
+    }
+    @GetMapping("/university/money/{id}/{year}")
+    public Optional<UniversityMoneySpentDTO> SearchUninversityMoneySpentByYear(@PathVariable int id, @PathVariable int year){
+        return adminService.UniverityChecksHowMuchTheirSpentEachYear(year, id);
     }
 
 

@@ -1,6 +1,8 @@
 package co.za.ukukhulabursary.ukukhulabursary.repository.implementation;
 
+import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityMoneySpentDTO;
 import co.za.ukukhulabursary.ukukhulabursary.dto.UniversityYearlyFundAllocationDTO;
+import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityMoneySpentMapper;
 import co.za.ukukhulabursary.ukukhulabursary.mapper.UniversityYearlyFundAllocationMapper;
 import co.za.ukukhulabursary.ukukhulabursary.model.UniversityYearlyFundAllocation;
 import co.za.ukukhulabursary.ukukhulabursary.repository.IRepository;
@@ -15,6 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UniversityYearlyFundAllocationRepository implements IRepository<UniversityYearlyFundAllocation> {
     private final UniversityYearlyFundAllocationMapper universityYearlyFundAllocationMapper;
+    private final UniversityMoneySpentMapper universityMoneySpentDTO;
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -49,6 +52,33 @@ public class UniversityYearlyFundAllocationRepository implements IRepository<Uni
         );
     }
 
+    public List<UniversityMoneySpentDTO> findUniverityAndTheMoneyTheirSpent(int year) {
+        String sql ="SELECT DISTINCT U.Name, UFA.Budget - UFA.RemainingBudget AS [Money Spent]\n" +
+                "FROM University U\n" +
+                "LEFT JOIN UniversityYearlyFundAllocation UFA ON U.UniversityID = UFA.UniversityID\n" +
+                "LEFT JOIN BBDYearlyFund BYF ON UFA.YearlyFundID = BYF.YearlyFundID\n" +
+                "WHERE YEAR(BYF.FinancialYearStart) = ?";
+
+        return jdbcTemplate.query(sql, universityMoneySpentDTO, year);
+    }
+
+    public Optional<UniversityMoneySpentDTO> UniverityChecksHowMuchTheirSpentEachYear(int year, int universityID) {
+        String sql ="SELECT U.Name, SUM(UFA.Budget - UFA.RemainingBudget) AS [Money Spent]\n" +
+                "FROM University U\n" +
+                "LEFT JOIN UniversityYearlyFundAllocation UFA ON U.UniversityID = UFA.UniversityID\n" +
+                "LEFT JOIN BBDYearlyFund BYF ON UFA.YearlyFundID = BYF.YearlyFundID\n" +
+                "WHERE YEAR(BYF.FinancialYearStart) = ? AND U.UniversityID = ?\n" +
+                "GROUP BY U.Name;";
+
+        List<UniversityMoneySpentDTO> university = jdbcTemplate.query(sql, universityMoneySpentDTO, year,universityID);
+
+        if (!university.isEmpty()){
+            return  Optional.of(university.getFirst());
+        }
+
+        return Optional.empty();
+    }
+
 
     public void save(
             UniversityYearlyFundAllocationDTO universityYearlyFundAllocationDTO) {
@@ -73,4 +103,5 @@ public class UniversityYearlyFundAllocationRepository implements IRepository<Uni
     public Optional<UniversityYearlyFundAllocation> findById(long id) {
         return Optional.empty();
     }
+
 }
